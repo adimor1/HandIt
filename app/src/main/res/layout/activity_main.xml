@@ -16,14 +16,6 @@
         android:layout_marginEnd="10dp"
         android:layout_alignParentBottom="true"/>
 
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/logout"
-        android:layout_below="@id/Add"
-        android:layout_marginBottom="10dp"
-        android:padding="10dp" />
 
     <EditText
         android:id="@+id/edit"
@@ -33,6 +25,17 @@
         android:inputType="textPersonName"
         android:text="Name"
         android:layout_marginTop="10dp"/>
+
+
+    <Button
+        android:id="@+id/userList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="200dp"
+        android:text="user list"
+
+        />
 
     <Button
         android:id="@+id/Add"

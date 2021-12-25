@@ -56,7 +56,6 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void addUser(String email, String password){
-
         User users= new User(email, password);
         db= FirebaseDatabase.getInstance();
         String key = db.getReference("Users").push().getKey();

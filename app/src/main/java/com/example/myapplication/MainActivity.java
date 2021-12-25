@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private Button logout;
     private EditText edit;
     private Button add;
-    private ListView listView;
+    private Button userList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         logout = findViewById(R.id.logout);
         edit = findViewById(R.id.edit);
         add = findViewById(R.id.add);
-        listView = findViewById(R.id.listView);
+        userList=findViewById(R.id.userList);
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,36 +49,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final ArrayList<String> list = new ArrayList<>();
-        final ArrayAdapter adapter= new ArrayAdapter<String>(this, R.layout.list_item, list);
-        listView.setAdapter(adapter);
-
-        //HashMap<String, Object> map = new HashMap<>();
-        //map.put("Name", "Adi");
-        //map.put("Email", "adimor@gmail.com");
-
-        //FirebaseDatabase.getInstance().getReference().child("User").updateChildren(map);
-
-        //DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("User");
-
-        /*reference.addValueEventListener(new ValueEventListener() {
+        userList.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                list.clear();
-                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
-                    User user = snapshot.getValue(User.class);
-                    String txt = user.getName() + " : " + user.getEmail();
-                    list.add(txt);
-                }
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(MainActivity.this, UsersListActivity.class));
             }
         });
-*/
+
+
 
     }
 }
