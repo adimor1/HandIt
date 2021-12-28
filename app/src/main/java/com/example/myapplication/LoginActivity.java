@@ -13,6 +13,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+
+
+
 public class LoginActivity extends AppCompatActivity {
 
     private EditText email;
@@ -48,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onSuccess(AuthResult authResult) {
                 Toast.makeText(LoginActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                LoginUser.setLoginEmail(email);
                 finish();
             }
         });

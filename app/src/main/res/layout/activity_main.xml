@@ -28,10 +28,18 @@
 
 
     <Button
+        android:id="@+id/userProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="300dp"
+        android:text="User Profile" />
+
+    <Button
         android:id="@+id/userList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="200dp"
         android:text="user list"
 

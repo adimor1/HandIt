@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText edit;
     private Button add;
     private Button userList;
+    private Button userProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         edit = findViewById(R.id.edit);
         add = findViewById(R.id.add);
         userList=findViewById(R.id.userList);
+        userProfile = findViewById(R.id.userProfile);
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 Toast.makeText(MainActivity.this, "Logged Out", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MainActivity.this, StartActivity.class));
+                LoginUser.setLoginEmail("");
             }
         });
 
@@ -54,6 +57,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(MainActivity.this, UsersListActivity.class));
+            }
+        });
+
+        userProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(MainActivity.this, UpdateUser.class));
             }
         });
 
