@@ -26,10 +26,10 @@ import java.util.HashMap;
 public class MainActivity extends AppCompatActivity {
 
     private Button logout;
-    private EditText edit;
     private Button add;
     private Button userList;
     private Button userProfile;
+    private Button professionals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +37,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         logout = findViewById(R.id.logout);
-        edit = findViewById(R.id.edit);
         add = findViewById(R.id.add);
         userList=findViewById(R.id.userList);
         userProfile = findViewById(R.id.userProfile);
+        professionals = findViewById(R.id.professionals);
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +68,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        professionals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(MainActivity.this, ProfessionalsListActivity.class));
+            }
+        });
 
 
     }

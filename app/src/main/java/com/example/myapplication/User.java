@@ -4,6 +4,8 @@ public class User {
     private String email;
     private String name;
     private String description;
+    private  String profession;
+    private String seniority;
 
     public User(){
     }
@@ -12,6 +14,8 @@ public class User {
         this.email=email;
         this.name = name;
         this.description = "טרם הוספת תיאור";
+        this.profession = "לא נקבע";
+        this.seniority = "לא נקבע";
     }
 
     public String getEmail(){
@@ -36,5 +40,21 @@ public class User {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getProfession() {
+        return profession;
+    }
+
+    public void setProfession(String profession) {
+        this.profession = profession;
+    }
+
+    public String getSeniority() {
+        return seniority;
+    }
+
+    public void setSeniority(String seniority) {
+        this.seniority = seniority;
     }
 }
