@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.firebase.database.DataSnapshot;
@@ -16,7 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class ProfessionalsListActivity extends AppCompatActivity {
+public class ProfessionalsListActivity extends AppCompatActivity implements MyAdapter.OnNoteListener{
 
     RecyclerView recyclerView;
     DatabaseReference database;
@@ -34,7 +35,7 @@ public class ProfessionalsListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        myAdapter = new MyAdapter(this, list);
+        myAdapter = new MyAdapter(this, list, this);
         recyclerView.setAdapter(myAdapter);
 
         database.addValueEventListener(new ValueEventListener() {
@@ -54,5 +55,12 @@ public class ProfessionalsListActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onNodeClick(int position) {
+        Intent intent = new Intent(this, ProfessionalDetailsActivity.class);
+        intent.putExtra("selected_user", list.get(position));
+        startActivity(intent);
     }
 }
