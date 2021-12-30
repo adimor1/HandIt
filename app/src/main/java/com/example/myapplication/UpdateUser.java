@@ -1,16 +1,22 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,6 +24,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 
@@ -27,8 +37,12 @@ public class UpdateUser extends AppCompatActivity {
     private EditText description;
     private EditText seniority;
     private EditText profession;
+    private ImageView imageProfile;
+    private Button changeImage;
 
     DatabaseReference databaseReference;
+    StorageReference storageReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +53,18 @@ public class UpdateUser extends AppCompatActivity {
         description = findViewById(R.id.description);
         seniority = findViewById(R.id.seniority);
         profession = findViewById(R.id.profession);
+        changeImage = findViewById(R.id.changeImage);
+        imageProfile = findViewById(R.id.imageProfile);
+
+        storageReference = FirebaseStorage.getInstance().getReference();
+
+        StorageReference profileRef = storageReference.child("users/"+LoginUser.getLoginEmail()+"/profile.jpg");
+        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.get().load(uri).into(imageProfile);
+            }
+        });
 
         updateUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,8 +76,45 @@ public class UpdateUser extends AppCompatActivity {
                 updateUserData(txt_description, txt_seniority, txt_profession);
             }
         });
+
+        changeImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent openGalleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(openGalleryIntent, 1000);
+            }
+        });
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1000){
+            Uri imageUri = data.getData();
+            imageProfile.setImageURI(imageUri);
+            uploadImageForFirebase(imageUri);
+        }
+    }
+
+    private void uploadImageForFirebase(Uri imageUri){
+        StorageReference fileRef = storageReference.child("users/"+LoginUser.getLoginEmail()+"/profile.jpg");
+        fileRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Picasso.get().load(uri).into(imageProfile);
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(UpdateUser.this, "image failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     private void updateUserData(String description, String seniority, String profession) {
         HashMap User = new HashMap();
         User.put("description", description);

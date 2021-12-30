@@ -63,7 +63,6 @@ public class RegisterActivity extends AppCompatActivity {
         reference.child(key).setValue(users);
     }
 
-
     private void registerUser(String email, String password) {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
