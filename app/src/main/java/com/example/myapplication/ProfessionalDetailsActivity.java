@@ -18,6 +18,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class ProfessionalDetailsActivity extends AppCompatActivity {
 
     private FirebaseDatabase db;
@@ -48,7 +52,6 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
 
         orderBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-
             public void onClick(View v) {
                 emailFromTv = tvEmail.getText().toString();
                 addOrder(emailFromTv);
@@ -77,17 +80,19 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
         //Initializing the views of the dialog.
         final EditText nameEt = dialog.findViewById(R.id.name_et);
         final EditText ageEt = dialog.findViewById(R.id.age_et);
-        final CheckBox termsCb = dialog.findViewById(R.id.terms_cb);
+
         Button submitButton = dialog.findViewById(R.id.submit_button);
+
+
 
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String name = nameEt.getText().toString();
                 String age = ageEt.getText().toString();
-                Boolean hasAccepted = termsCb.isChecked();
-                populateInfoTv(name,age,hasAccepted);
+                populateInfoTv(name,age);
                 dialog.dismiss();
             }
         });
@@ -95,12 +100,10 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    void populateInfoTv(String name, String age, Boolean hasAcceptedTerms) {
+    void populateInfoTv(String name, String age) {
         infoTv.setVisibility(View.VISIBLE);
         String acceptedText = "have";
-        if(!hasAcceptedTerms) {
-            acceptedText = "have not";
-        }
+
        // infoTv.setText(String.format(getString(R.string.info), name, age, acceptedText));
     }
 }

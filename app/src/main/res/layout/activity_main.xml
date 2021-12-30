@@ -7,42 +7,43 @@
     tools:context=".MainActivity">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/userProfile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:text="User Profile" />
+
+        <Button
+            android:id="@+id/userList"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:text="user list" />
+
+        <Button
+            android:id="@+id/professionals"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:text="search prof" />
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/logout"
         android:layout_width="119dp"
         android:layout_height="68dp"
-        android:layout_centerInParent="true"
-        android:text="Log out"
         android:layout_marginEnd="10dp"
-        android:layout_alignParentBottom="true"/>
-
-
-
-    <Button
-        android:id="@+id/userProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="300dp"
-        android:text="User Profile" />
-
-    <Button
-        android:id="@+id/userList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="200dp"
-        android:text="user list"
-        />
-
-    <Button
-        android:id="@+id/professionals"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:layout_marginEnd="300dp"
-        android:text="search professionals"
-        />
-
+        android:layout_marginTop="520dp"
+        android:layout_centerHorizontal="true"
+        android:text="Log out" />
 
 </RelativeLayout>

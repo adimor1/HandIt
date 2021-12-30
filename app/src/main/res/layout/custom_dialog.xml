@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_width="350dp"
+    android:layout_height="350dp"
     android:layout_margin="16dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="text"
+        android:text="Order Details"
         android:textSize="24sp"
         android:layout_marginBottom="16dp"/>
 
@@ -27,18 +28,24 @@
         android:imeOptions="actionNext"
         android:id="@+id/age_et"/>
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="agree"
-        android:layout_marginTop="16dp"
-        android:id="@+id/terms_cb"
-        android:layout_marginBottom="16dp"/>
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
 
         android:id="@+id/submit_button"/>
+
+    <EditText
+        android:id="@+id/editTextDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/editTextTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="time" />
 </LinearLayout>
