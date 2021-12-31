@@ -4,28 +4,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    android:padding="20dp"
+    tools:context=".Activities.RegisterActivity"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="welcom to HandIt"
+        android:textSize="26sp"
+        android:textStyle="italic"
+        />
+
+    <EditText
+        android:id="@+id/firstName"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="80dp"
+        android:ems="10"
+        android:hint="First Name" />
+
+    <EditText
+        android:id="@+id/lastName"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="160dp"
+        android:ems="10"
+        android:hint="Last Name" />
 
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="240dp"
         android:ems="10"
-        android:text="Email" />
+        android:hint="Email"
+        android:inputType="textEmailAddress"/>
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="320dp"
         android:ems="10"
-        android:text="Password" />
+        android:text="Password"
+        android:inputType="textPassword"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp">
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/isProf"
+           />
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="I'm Not Professional"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"/>
+    </LinearLayout>
 
     <Button
         android:id="@+id/registerBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="480dp"
+        android:layout_centerHorizontal="true"
         android:text="Register" />
+
+
 </RelativeLayout>

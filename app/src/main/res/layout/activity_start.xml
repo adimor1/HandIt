@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StartActivity">
+    android:paddingTop="10dp"
+    android:paddingLeft="40dp"
+    android:paddingRight="40dp"
+    android:paddingBottom="20dp"
+    tools:context=".Activities.StartActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -32,20 +36,46 @@
             android:textColor="#000"
             android:layout_centerHorizontal="true"/>
 
+        <EditText
+            android:id="@+id/emailLogin"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="360dp"
+            android:ems="10"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            />
+
+        <EditText
+            android:id="@+id/passwordLogin"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:ems="10"
+            android:layout_marginTop="430dp"
+            android:hint="Password"/>
+
+
         <Button
             android:id="@+id/register"
-            android:layout_width="250dp"
-            android:layout_height="59dp"
-            android:layout_marginTop="450dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
             android:layout_centerHorizontal="true"
-            android:text="Register" />
+            android:layout_marginTop="580dp"
+            android:text="Don't have an account? Sign Up"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="18sp"
+            android:inputType="textCapCharacters"
+            app:backgroundTint="@android:color/white" />
 
         <Button
             android:id="@+id/login"
             android:layout_width="250dp"
-            android:layout_height="59dp"
-            android:layout_marginTop="520dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="530dp"
             android:layout_centerHorizontal="true"
+            android:inputType="textCapCharacters"
+            android:textSize="20sp"
             android:text="Login" />
     </RelativeLayout>
 

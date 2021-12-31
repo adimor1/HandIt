@@ -1,26 +1,21 @@
-package com.example.myapplication;
+package com.example.myapplication.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.common.internal.Objects;
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.myapplication.Models.LoginUser;
+import com.example.myapplication.Models.Order;
+import com.example.myapplication.Models.User;
+import com.example.myapplication.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 public class ProfessionalDetailsActivity extends AppCompatActivity {
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".Activities.MainActivity">
 
 
     <LinearLayout
@@ -21,12 +21,6 @@
             android:layout_margin="10dp"
             android:text="User Profile" />
 
-        <Button
-            android:id="@+id/userList"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="10dp"
-            android:text="user list" />
 
         <Button
             android:id="@+id/professionals"

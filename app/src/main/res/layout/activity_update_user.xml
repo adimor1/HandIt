@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UpdateUser">
+    tools:context=".Activities.UpdateUser">
 
     <EditText
         android:id="@+id/profession"
@@ -18,7 +18,7 @@
         android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="400dp"
+        android:layout_marginTop="380dp"
         android:ems="10"
         android:text="Description" />
 
@@ -26,7 +26,15 @@
         android:id="@+id/seniority"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="460dp"
+        android:ems="10"
+        android:text="Seniority (Years)" />
+
+    <EditText
+        android:id="@+id/phone"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="520dp"
         android:ems="10"
         android:text="Seniority (Years)" />
 

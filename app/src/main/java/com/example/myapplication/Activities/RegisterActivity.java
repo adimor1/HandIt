@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,8 +8,11 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
+import com.example.myapplication.Models.User;
+import com.example.myapplication.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -25,23 +28,32 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private FirebaseDatabase db;
     private DatabaseReference reference;
+    private EditText firstName;
+    private EditText lastName;
+    private Switch isProf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        firstName = findViewById(R.id.firstName);
+        lastName = findViewById(R.id.lastName);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         registerBtn = findViewById(R.id.registerBtn);
+        isProf = findViewById(R.id.isProf);
 
         auth = FirebaseAuth.getInstance();
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String txt_firstName = firstName.getText().toString();
+                String txt_lastName = lastName.getText().toString();
                 String txt_email = email.getText().toString();
                 String txt_password = password.getText().toString();
+                Boolean isProfS = isProf.isChecked();
 
                 if(TextUtils.isEmpty(txt_email) || TextUtils.isEmpty((txt_password))) {
                     Toast.makeText(RegisterActivity.this, "Empty Credentials", Toast.LENGTH_SHORT).show();
@@ -49,14 +61,14 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Short Password", Toast.LENGTH_SHORT).show();
                 } else {
                     registerUser(txt_email, txt_password);
-                    addUser(txt_email, txt_password);
+                    addUser(txt_firstName, txt_lastName, txt_email, isProfS);
                 }
             }
         });
     }
 
-    private void addUser(String email, String password){
-        User users= new User(email, password);
+    private void addUser(String firstName, String lastName, String email, boolean isProf){
+        User users= new User(firstName, lastName, email, isProf);
         db= FirebaseDatabase.getInstance();
         String key = db.getReference("Users").push().getKey();
         reference= db.getReference("Users");

@@ -10,28 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".ProfessionalDetailsActivity"
+            android:name=".Activities.ProfessionalDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfessionalsListActivity"
+            android:name=".Activities.ProfessionalsListActivity"
             android:exported="false" />
         <activity
-            android:name=".UpdateUser"
+            android:name=".Activities.UpdateUser"
             android:exported="false" />
         <activity
-            android:name=".UsersListActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Activities.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".StartActivity"
+            android:name=".Activities.StartActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

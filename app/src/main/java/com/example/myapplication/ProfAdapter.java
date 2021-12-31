@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.Models.User;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -18,22 +19,22 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class ProfAdapter extends RecyclerView.Adapter<ProfAdapter.MyViewHolder> {
     Context context;
     ArrayList<User> list;
-    private OnNoteListener monNoteListener;
+    private ProfListener mprofListener;
 
-    public MyAdapter(Context context, ArrayList<User> list, OnNoteListener onNoteListener) {
+    public ProfAdapter(Context context, ArrayList<User> list, ProfListener profListener) {
         this.context = context;
         this.list = list;
-        this.monNoteListener = onNoteListener;
+        this.mprofListener = profListener;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.item,parent,false);
-        return  new MyViewHolder(v, monNoteListener);
+        View v = LayoutInflater.from(context).inflate(R.layout.prof_item,parent,false);
+        return  new MyViewHolder(v, mprofListener);
     }
 
     @Override
@@ -51,22 +52,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView email, description, profession;
-        OnNoteListener onNoteListener;
-
+        ProfListener profListener;
 
         StorageReference storageReference;
         private ImageView imageProf;
 
-
-
-        public MyViewHolder(@NonNull View itemView, OnNoteListener onNoteListener) {
+        public MyViewHolder(@NonNull View itemView, ProfListener profListener) {
             super(itemView);
 
             email = itemView.findViewById(R.id.tvemail);
             description = itemView.findViewById(R.id.tvdescription);
             profession = itemView.findViewById(R.id.tvprofession);
             imageProf = itemView.findViewById(R.id.imageProf);
-            this.onNoteListener = onNoteListener;
+            this.profListener = profListener;
 
 
             storageReference = FirebaseStorage.getInstance().getReference();
@@ -78,17 +76,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                     Picasso.get().load(uri).into(imageProf);
                 }
             });
-
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            onNoteListener.onNodeClick(getAdapterPosition());
+            profListener.profClick(getAdapterPosition());
         }
     }
 
-    public interface OnNoteListener{
-        void onNodeClick(int position);
+    public interface ProfListener{
+        void profClick(int position);
     }
 }

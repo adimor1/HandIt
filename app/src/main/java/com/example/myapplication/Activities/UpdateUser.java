@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,15 +14,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.example.myapplication.Models.LoginUser;
+import com.example.myapplication.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -39,10 +38,10 @@ public class UpdateUser extends AppCompatActivity {
     private EditText profession;
     private ImageView imageProfile;
     private Button changeImage;
+    private EditText phone;
 
     DatabaseReference databaseReference;
     StorageReference storageReference;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +54,11 @@ public class UpdateUser extends AppCompatActivity {
         profession = findViewById(R.id.profession);
         changeImage = findViewById(R.id.changeImage);
         imageProfile = findViewById(R.id.imageProfile);
+        phone = findViewById(R.id.phone);
 
         storageReference = FirebaseStorage.getInstance().getReference();
 
-        StorageReference profileRef = storageReference.child("users/"+LoginUser.getLoginEmail()+"/profile.jpg");
+        StorageReference profileRef = storageReference.child("users/"+ LoginUser.getLoginEmail()+"/profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -72,6 +72,7 @@ public class UpdateUser extends AppCompatActivity {
                 String txt_description = description.getText().toString();
                 String txt_seniority = seniority.getText().toString();
                 String txt_profession = profession.getText().toString();
+                String tx_phone = phone.getText().toString();
 
                 updateUserData(txt_description, txt_seniority, txt_profession);
             }
