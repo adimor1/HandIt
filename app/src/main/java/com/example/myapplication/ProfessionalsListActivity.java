@@ -46,28 +46,13 @@ public class ProfessionalsListActivity extends AppCompatActivity implements MyAd
         myAdapter = new MyAdapter(this, list, this);
         recyclerView.setAdapter(myAdapter);
 
-        imageProf = findViewById(R.id.imageProf);
-
-
-
         database.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-
                     User user = dataSnapshot.getValue(User.class);
                     list.add(user);
-
-                    storageReference = FirebaseStorage.getInstance().getReference();
-
-                    //StorageReference profileRef = storageReference.child("users/"+"adimor@gmail.com"+"/profile.jpg");
-                    //profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                      //  @Override
-                        //public void onSuccess(Uri uri) {
-                         //   Picasso.get().load(uri).into(imageProf);
-                        //}
-                    //});
                 }
                 myAdapter.notifyDataSetChanged();
             }

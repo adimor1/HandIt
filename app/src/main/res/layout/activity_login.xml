@@ -13,15 +13,18 @@
         android:layout_width="335dp"
         android:layout_height="67dp"
         android:ems="10"
-        android:text="Email" />
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        />
 
     <EditText
         android:id="@+id/passwordLogin"
         android:layout_width="335dp"
         android:layout_height="90dp"
         android:ems="10"
-        android:text="Password"
-        android:layout_marginTop="70dp"/>
+        android:hint="Password"
+        android:layout_marginTop="70dp"
+        android:inputType="textPassword"/>
 
     <Button
         android:id="@+id/loginBtn"
@@ -29,4 +32,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
         android:text="Login" />
+
+
 </RelativeLayout>

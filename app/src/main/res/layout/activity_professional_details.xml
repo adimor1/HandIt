@@ -8,6 +8,15 @@
     android:orientation="vertical"
     tools:context=".ProfessionalDetailsActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -15,13 +24,14 @@
         android:layout_gravity="center_vertical"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Email:"
-            android:textColor="@color/black"
-            android:textSize="26sp"
-            android:textStyle="bold"/>
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            app:srcCompat="@android:drawable/sym_action_email"
+            app:tint="@color/purple_200"
+            />
 
         <TextView
             android:id="@+id/tvEmailDetails"
@@ -29,8 +39,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:text="example"
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textColor="@color/purple_700"
+            android:textSize="20sp"
+            android:paddingTop="8dp"/>
 
     </LinearLayout>
 
