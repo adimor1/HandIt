@@ -7,9 +7,11 @@ public class Order {
     private String time;
     private String date;
 
-    public Order(String emailPro, String emailCl) {
+    public Order(String emailPro, String emailCl, String time, String date) {
         this.clientEmail = emailCl;
         this.proEmail = emailPro ;
+        this.time = time;
+        this.date = date;
     }
 
     public String getClientEmail() {

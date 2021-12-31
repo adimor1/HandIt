@@ -3,49 +3,42 @@
     android:orientation="vertical"
     android:layout_width="350dp"
     android:layout_height="350dp"
-    android:layout_margin="16dp">
+    android:layout_margin="28dp"
+    android:padding="10dp"
+    >
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="335dp"
         android:layout_height="wrap_content"
         android:text="Order Details"
         android:textSize="24sp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="20dp"
+        />
 
     <EditText
+        android:id="@+id/dateEt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="name"
-        android:inputType="text"
-        android:imeOptions="actionNext"
-        android:id="@+id/name_et"/>
+        android:hint="12/12/21"
+        android:inputType="date"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"/>
 
     <EditText
+        android:id="@+id/timeEt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="age"
-        android:inputType="number"
-        android:imeOptions="actionNext"
-        android:id="@+id/age_et"/>
+        android:hint="00:00"
+        android:inputType="time"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"/>
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-
-        android:id="@+id/submit_button"/>
-
-    <EditText
-        android:id="@+id/editTextDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="date" />
-
-    <EditText
-        android:id="@+id/editTextTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="time" />
+        android:id="@+id/submit_button"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="30dp"
+        android:text="Sumbit"/>
 </LinearLayout>

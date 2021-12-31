@@ -54,56 +54,38 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 emailFromTv = tvEmail.getText().toString();
-                addOrder(emailFromTv);
                 showCustomDialog();
             }
         });
     }
 
-    private void addOrder(String emailPro){
-        Order order= new Order(emailPro, LoginUser.getLoginEmail());
-        db= FirebaseDatabase.getInstance();
-        String key = db.getReference("Orders").push().getKey();
-        reference= db.getReference("Orders");
-        reference.child(key).setValue(order);
-    }
-
     void showCustomDialog() {
         final Dialog dialog = new Dialog(ProfessionalDetailsActivity.this);
-        //We have added a title in the custom layout. So let's disable the default title.
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //The user will be able to cancel the dialog bu clicking anywhere outside the dialog.
         dialog.setCancelable(true);
-        //Mention the name of the layout of your custom dialog.
         dialog.setContentView(R.layout.custom_dialog);
-
-        //Initializing the views of the dialog.
-        final EditText nameEt = dialog.findViewById(R.id.name_et);
-        final EditText ageEt = dialog.findViewById(R.id.age_et);
+        final EditText timeEt = dialog.findViewById(R.id.timeEt);
+        final EditText dateEt = dialog.findViewById(R.id.dateEt);
 
         Button submitButton = dialog.findViewById(R.id.submit_button);
-
-
-
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String name = nameEt.getText().toString();
-                String age = ageEt.getText().toString();
-                populateInfoTv(name,age);
+                String time = timeEt.getText().toString();
+                String date = dateEt.getText().toString();
+                addOrder(emailFromTv, time, date);
                 dialog.dismiss();
             }
         });
-
         dialog.show();
     }
 
-    void populateInfoTv(String name, String age) {
-        infoTv.setVisibility(View.VISIBLE);
-        String acceptedText = "have";
-
-       // infoTv.setText(String.format(getString(R.string.info), name, age, acceptedText));
+    private void addOrder(String emailPro, String time, String date){
+        Order order= new Order(emailPro, LoginUser.getLoginEmail(), time, date);
+        db= FirebaseDatabase.getInstance();
+        String key = db.getReference("Orders").push().getKey();
+        reference= db.getReference("Orders");
+        reference.child(key).setValue(order);
     }
 }
