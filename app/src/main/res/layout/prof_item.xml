@@ -26,15 +26,17 @@
                 android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
                 android:alpha="1"
-                tools:srcCompat="@tools:sample/avatars"
                 tools:ignore="MissingClass"
+                android:padding="12dp"
+                android:src="@drawable/empyavatar"
                 />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="12dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -43,21 +45,14 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Profession:"
-                        android:textColor="@color/black"
-                        android:textSize="26sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvprofession"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/tvName"
+                        android:layout_width="173dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
-                        android:text="example"
+                        android:text="name name"
                         android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -68,49 +63,29 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Email:"
-                        android:textColor="@color/black"
-                        android:textSize="26sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvemail"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/tvDescription"
+                        android:layout_width="179dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
-                        android:text="example"
+                        android:text="description"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Description:"
-                        android:textColor="@color/black"
-                        android:textSize="26sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tvdescription"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:text="example"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
-
-                </LinearLayout>
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvRating"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="80dp"
+                android:layout_weight="1"
+                android:text="4.8"
+                android:paddingTop="20dp"
+                android:paddingEnd="20dp"
+                android:textSize="20dp"/>
 
         </LinearLayout>
 

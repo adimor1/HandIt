@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.myapplication.Models.LoginUser;
 import com.example.myapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
+                LoginUser.setLoginEmail("no user connect");
                 startActivity(new Intent(MainActivity.this, ProfessionalsListActivity.class));
             }
         });

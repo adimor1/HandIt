@@ -22,7 +22,9 @@ import java.util.ArrayList;
 public class ProfAdapter extends RecyclerView.Adapter<ProfAdapter.MyViewHolder> {
     Context context;
     ArrayList<User> list;
+    User user;
     private ProfListener mprofListener;
+    static String email;
 
     public ProfAdapter(Context context, ArrayList<User> list, ProfListener profListener) {
         this.context = context;
@@ -39,10 +41,11 @@ public class ProfAdapter extends RecyclerView.Adapter<ProfAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        User user = list.get(position);
-        holder.email.setText(user.getEmail());
+        user = list.get(position);
+        holder.rating.setText(user.getEmail());
         holder.description.setText(user.getDescription());
-        holder.profession.setText(user.getProfession());
+        holder.name.setText(user.getProfession());
+        email = user.getEmail();
     }
 
     @Override
@@ -51,7 +54,7 @@ public class ProfAdapter extends RecyclerView.Adapter<ProfAdapter.MyViewHolder> 
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView email, description, profession;
+        TextView name, description, rating;
         ProfListener profListener;
 
         StorageReference storageReference;
@@ -60,16 +63,16 @@ public class ProfAdapter extends RecyclerView.Adapter<ProfAdapter.MyViewHolder> 
         public MyViewHolder(@NonNull View itemView, ProfListener profListener) {
             super(itemView);
 
-            email = itemView.findViewById(R.id.tvemail);
-            description = itemView.findViewById(R.id.tvdescription);
-            profession = itemView.findViewById(R.id.tvprofession);
+            name = itemView.findViewById(R.id.tvName);
+            rating = itemView.findViewById(R.id.tvRating);
+            description = itemView.findViewById(R.id.tvDescription);
             imageProf = itemView.findViewById(R.id.imageProf);
             this.profListener = profListener;
 
-
             storageReference = FirebaseStorage.getInstance().getReference();
 
-            StorageReference profileRef = storageReference.child("users/adimor@gmail.com/profile.jpg");
+
+            StorageReference profileRef = storageReference.child("users/"+email+"/profile.jpg");
             profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {

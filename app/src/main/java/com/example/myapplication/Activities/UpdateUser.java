@@ -18,6 +18,7 @@ import com.example.myapplication.Models.LoginUser;
 import com.example.myapplication.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +28,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
-
 import java.util.HashMap;
 
 public class UpdateUser extends AppCompatActivity {
@@ -40,8 +40,10 @@ public class UpdateUser extends AppCompatActivity {
     private Button changeImage;
     private EditText phone;
 
+
     DatabaseReference databaseReference;
     StorageReference storageReference;
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +60,7 @@ public class UpdateUser extends AppCompatActivity {
 
         storageReference = FirebaseStorage.getInstance().getReference();
 
-        StorageReference profileRef = storageReference.child("users/"+ LoginUser.getLoginEmail()+"/profile.jpg");
+        StorageReference profileRef = storageReference.child("users/"+LoginUser.getLoginEmail()+"/profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -72,7 +74,6 @@ public class UpdateUser extends AppCompatActivity {
                 String txt_description = description.getText().toString();
                 String txt_seniority = seniority.getText().toString();
                 String txt_profession = profession.getText().toString();
-                String tx_phone = phone.getText().toString();
 
                 updateUserData(txt_description, txt_seniority, txt_profession);
             }
@@ -105,7 +106,9 @@ public class UpdateUser extends AppCompatActivity {
                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
+
                         Picasso.get().load(uri).into(imageProfile);
+                        Toast.makeText(UpdateUser.this, "image sucssed", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -116,6 +119,7 @@ public class UpdateUser extends AppCompatActivity {
             }
         });
     }
+
     private void updateUserData(String description, String seniority, String profession) {
         HashMap User = new HashMap();
         User.put("description", description);

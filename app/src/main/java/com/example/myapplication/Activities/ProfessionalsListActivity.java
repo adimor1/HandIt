@@ -32,8 +32,10 @@ public class ProfessionalsListActivity extends AppCompatActivity implements Prof
     StorageReference storageReference;
     private ImageView imageProf;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_professionals_list);
 
@@ -62,7 +64,6 @@ public class ProfessionalsListActivity extends AppCompatActivity implements Prof
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
     }

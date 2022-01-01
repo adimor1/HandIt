@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,9 +12,12 @@ import android.widget.Toast;
 
 import com.example.myapplication.Models.LoginUser;
 import com.example.myapplication.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -49,20 +53,33 @@ public class StartActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity((new Intent(StartActivity.this, RegisterActivity.class)));
+                startActivity(new Intent(StartActivity.this, RegisterActivity.class));
                 finish();
             }
         });
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if(currentUser != null){
+            reload();
+        }
+    }
+
+    private void reload() { }
 
     private void loginUser(String email, String password){
         auth.signInWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
                 Toast.makeText(StartActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+
                 startActivity(new Intent(StartActivity.this, MainActivity.class));
-                LoginUser.setLoginEmail(email);
+               // LoginUser.setLoginEmail(email);
                 finish();
+
             }
         });
     }
