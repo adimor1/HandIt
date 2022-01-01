@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
 
@@ -14,12 +15,15 @@ import com.example.myapplication.Activities.ProfessionalDetailsActivity;
 import com.example.myapplication.Models.User;
 import com.example.myapplication.ProfAdapter;
 import com.example.myapplication.R;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -29,9 +33,6 @@ public class ProfessionalsListActivity extends AppCompatActivity implements Prof
     DatabaseReference database;
     ProfAdapter myAdapter;
     ArrayList<User> list;
-    StorageReference storageReference;
-    private ImageView imageProf;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +46,10 @@ public class ProfessionalsListActivity extends AppCompatActivity implements Prof
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
+
+
         myAdapter = new ProfAdapter(this, list, this);
         recyclerView.setAdapter(myAdapter);
-
         database.addValueEventListener(new ValueEventListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override

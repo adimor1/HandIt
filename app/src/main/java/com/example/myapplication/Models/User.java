@@ -12,6 +12,15 @@ public class User implements Parcelable{
     private String profession;
     private String seniority;
     private String phone;
+    private String uriImage;
+
+    public String getUriImage() {
+        return uriImage;
+    }
+
+    public void setUriImage(String uriImage) {
+        this.uriImage = uriImage;
+    }
 
     public String getLastName() {
         return lastName;
@@ -76,6 +85,7 @@ public class User implements Parcelable{
             this.phone="Not entered";
             this.sumRating=0;
             this.countRating=0;
+            this.uriImage="https://firebasestorage.googleapis.com/v0/b/myapplication-67a01.appspot.com/o/empyavatar.png?alt=media&token=1ce9fd8f-d17a-4128-81ef-64d06d3189b9";
         }
     }
 

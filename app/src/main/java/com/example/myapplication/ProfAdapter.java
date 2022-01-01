@@ -7,10 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.Activities.MainActivity;
 import com.example.myapplication.Models.LoginUser;
 import com.example.myapplication.Models.User;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -46,6 +48,8 @@ public class ProfAdapter extends RecyclerView.Adapter<ProfAdapter.MyViewHolder> 
         holder.description.setText(user.getDescription());
         holder.name.setText(user.getProfession());
         holder.email.setText(user.getEmail());
+        Uri uri = Uri.parse(user.getUriImage());
+        Picasso.get().load(uri).into(holder.imageProf);
     }
 
     @Override
@@ -55,12 +59,10 @@ public class ProfAdapter extends RecyclerView.Adapter<ProfAdapter.MyViewHolder> 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView name, description, rating, email;
+        ImageView imageProf;
         ProfListener profListener;
 
-        StorageReference storageReference;
-        private ImageView imageProf;
-
-        public MyViewHolder(@NonNull View itemView, ProfListener profListener) {
+        public MyViewHolder(@NonNull View itemView,  ProfListener profListener) {
             super(itemView);
 
             name = itemView.findViewById(R.id.tvName);
@@ -70,14 +72,6 @@ public class ProfAdapter extends RecyclerView.Adapter<ProfAdapter.MyViewHolder> 
             email = itemView.findViewById(R.id.tvEmail);
             this.profListener = profListener;
 
-            storageReference = FirebaseStorage.getInstance().getReference();
-            StorageReference profileRef = storageReference.child("users/"+rating+"/profile.jpg");
-            profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                @Override
-                public void onSuccess(Uri uri) {
-                    Picasso.get().load(uri).into(imageProf);
-                }
-            });
             itemView.setOnClickListener(this);
         }
 

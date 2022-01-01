@@ -36,7 +36,8 @@
                 android:layout_width="179dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:visibility="gone" />
+                android:visibility="gone"
+                android:text="email"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

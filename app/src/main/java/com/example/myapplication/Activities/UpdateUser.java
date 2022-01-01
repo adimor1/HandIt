@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.myapplication.Models.LoginUser;
+import com.example.myapplication.Models.User;
 import com.example.myapplication.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -39,8 +40,7 @@ public class UpdateUser extends AppCompatActivity {
     private ImageView imageProfile;
     private Button changeImage;
     private EditText phone;
-
-
+    
     DatabaseReference databaseReference;
     StorageReference storageReference;
     FirebaseAuth firebaseAuth;
@@ -106,7 +106,7 @@ public class UpdateUser extends AppCompatActivity {
                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-
+                        updateImageUri(uri);
                         Picasso.get().load(uri).into(imageProfile);
                         Toast.makeText(UpdateUser.this, "image sucssed", Toast.LENGTH_SHORT).show();
                     }
@@ -134,7 +134,26 @@ public class UpdateUser extends AppCompatActivity {
                     String key = childSnapshot.getKey();
                     databaseReference.child(key).updateChildren(User);
                 }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
 
+    private void updateImageUri(Uri uri) {
+        String stringUri = uri.toString();
+        HashMap User = new HashMap();
+        User.put("uriImage", stringUri);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        databaseReference.orderByChild("email").equalTo(LoginUser.getLoginEmail()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot childSnapshot: snapshot.getChildren()){
+                    String key = childSnapshot.getKey();
+                    databaseReference.child(key).updateChildren(User);
+                }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
