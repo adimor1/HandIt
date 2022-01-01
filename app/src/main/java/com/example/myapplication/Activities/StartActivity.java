@@ -1,5 +1,6 @@
 package com.example.myapplication.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -58,28 +59,17 @@ public class StartActivity extends AppCompatActivity {
             }
         });
     }
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = auth.getCurrentUser();
-        if(currentUser != null){
-            reload();
-        }
-    }
 
-    private void reload() { }
 
     private void loginUser(String email, String password){
-        auth.signInWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onSuccess(AuthResult authResult) {
-                Toast.makeText(StartActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-
-                startActivity(new Intent(StartActivity.this, MainActivity.class));
-               // LoginUser.setLoginEmail(email);
-                finish();
-
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(StartActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(StartActivity.this, MainActivity.class));
+                    LoginUser.setLoginEmail(email);
+                }
             }
         });
     }

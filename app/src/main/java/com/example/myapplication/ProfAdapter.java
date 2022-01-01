@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.Models.LoginUser;
 import com.example.myapplication.Models.User;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -24,7 +25,6 @@ public class ProfAdapter extends RecyclerView.Adapter<ProfAdapter.MyViewHolder> 
     ArrayList<User> list;
     User user;
     private ProfListener mprofListener;
-    static String email;
 
     public ProfAdapter(Context context, ArrayList<User> list, ProfListener profListener) {
         this.context = context;
@@ -45,7 +45,7 @@ public class ProfAdapter extends RecyclerView.Adapter<ProfAdapter.MyViewHolder> 
         holder.rating.setText(user.getEmail());
         holder.description.setText(user.getDescription());
         holder.name.setText(user.getProfession());
-        email = user.getEmail();
+        holder.email.setText(user.getEmail());
     }
 
     @Override
@@ -54,7 +54,7 @@ public class ProfAdapter extends RecyclerView.Adapter<ProfAdapter.MyViewHolder> 
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView name, description, rating;
+        TextView name, description, rating, email;
         ProfListener profListener;
 
         StorageReference storageReference;
@@ -67,12 +67,11 @@ public class ProfAdapter extends RecyclerView.Adapter<ProfAdapter.MyViewHolder> 
             rating = itemView.findViewById(R.id.tvRating);
             description = itemView.findViewById(R.id.tvDescription);
             imageProf = itemView.findViewById(R.id.imageProf);
+            email = itemView.findViewById(R.id.tvEmail);
             this.profListener = profListener;
 
             storageReference = FirebaseStorage.getInstance().getReference();
-
-
-            StorageReference profileRef = storageReference.child("users/"+email+"/profile.jpg");
+            StorageReference profileRef = storageReference.child("users/"+rating+"/profile.jpg");
             profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {

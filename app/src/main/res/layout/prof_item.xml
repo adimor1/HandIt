@@ -31,6 +31,13 @@
                 android:src="@drawable/empyavatar"
                 />
 
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:visibility="gone" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -70,7 +77,6 @@
                         android:text="description"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
-
                 </LinearLayout>
 
 

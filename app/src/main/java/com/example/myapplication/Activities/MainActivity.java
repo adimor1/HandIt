@@ -38,13 +38,13 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Logged Out", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MainActivity.this, StartActivity.class));
                 LoginUser.setLoginEmail("");
+                finish();
             }
         });
 
         userProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(MainActivity.this, UpdateUser.class));
             }
         });
@@ -52,12 +52,8 @@ public class MainActivity extends AppCompatActivity {
         professionals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                LoginUser.setLoginEmail("no user connect");
                 startActivity(new Intent(MainActivity.this, ProfessionalsListActivity.class));
             }
         });
-
-
     }
 }
