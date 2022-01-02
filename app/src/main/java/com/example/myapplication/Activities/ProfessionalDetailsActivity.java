@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.Models.LoginUser;
@@ -17,6 +18,7 @@ import com.example.myapplication.Models.User;
 import com.example.myapplication.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 public class ProfessionalDetailsActivity extends AppCompatActivity {
 
@@ -29,7 +31,9 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
     TextView tvProf;
     TextView tvPhone;
     TextView tvDescription;
-    Uri image;
+    TextView tvSenority;
+    TextView tvRating;
+    ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,9 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
         tvDescription = findViewById(R.id.tvDescriptionDetails);
         tvPhone = findViewById(R.id.phoneDetails);
         tvProf = findViewById(R.id.profDetails);
+        //image = findViewById(R.id.imageDetails);
+        tvSenority = findViewById(R.id.tvSeniority);
+        tvRating = findViewById(R.id.ratingDetails);
 
         if(getIntent().hasExtra("selected_user")){
             User user = getIntent().getParcelableExtra("selected_user");
@@ -51,15 +58,17 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
             String description= user.getDescription();
             String phone = user.getPhone();
             String seniority= user.getSeniority();
-            String image = user.getUriImage();
-            String countRating = String.valueOf(user.getCountRating());
-            String sumRating = String.valueOf(user.getSumRating());
+            //String rating = String.valueOf(user.getSumRating() / user.getCountRating());
+            //Uri uri = Uri.parse(user.getUriImage());
 
             tvName.setText(name);
             tvEmail.setText(email);
             tvDescription.setText(description);
             tvPhone.setText(phone);
             tvProf.setText(profession);
+            tvSenority.setText(seniority);
+            //tvRating.setText(rating);
+          //  Picasso.get().load(uri).into(image);
         }
 
         orderBtn.setOnClickListener(new View.OnClickListener() {

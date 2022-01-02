@@ -63,6 +63,7 @@
             android:id="@+id/isProf"
            />
         <TextView
+            android:id="@+id/profText"
             android:layout_width="wrap_content"
             android:text="I'm Not Professional"
             android:layout_height="wrap_content"

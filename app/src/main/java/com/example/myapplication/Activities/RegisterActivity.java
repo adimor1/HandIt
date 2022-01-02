@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Models.LoginUser;
@@ -41,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText firstName;
     private EditText lastName;
     private Switch isProf;
+    private TextView IsProfText;
     StorageReference storageReference;
 
     @Override
@@ -54,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         registerBtn = findViewById(R.id.registerBtn);
         isProf = findViewById(R.id.isProf);
-
+        IsProfText = findViewById(R.id.profText);
         auth = FirebaseAuth.getInstance();
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
