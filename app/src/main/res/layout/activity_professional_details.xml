@@ -6,22 +6,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activities.ProfessionalDetailsActivity">
+    tools:context=".Activities.ProfessionalDetailsActivity"
+    android:padding="10dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name"
-        android:textColor="@color/black"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        android:padding="10dp"
-        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageDetails"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:alpha="1"
+            tools:ignore="MissingClass"
+            android:padding="12dp"
+            android:src="@drawable/empyavatar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="135dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingTop="32dp">
+
+            <TextView
+                android:id="@+id/nameDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textColor="@color/black"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/profDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="prof"
+                android:textColor="@color/black"
+                android:textSize="26sp" />
+        </LinearLayout>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -30,18 +65,17 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             app:srcCompat="@android:drawable/sym_action_email"
-            app:tint="@color/purple_200"
-            />
+            app:tint="@color/purple_200" />
 
         <TextView
             android:id="@+id/tvEmailDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
+            android:paddingTop="8dp"
             android:text="example"
             android:textColor="@color/purple_700"
-            android:textSize="20sp"
-            android:paddingTop="8dp"/>
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -49,20 +83,47 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            app:srcCompat="@android:drawable/stat_sys_speakerphone"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            app:tint="@color/purple_200"/>
+
+        <TextView
+            android:id="@+id/phoneDetails"
+            android:layout_width="215dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:paddingTop="8dp"
+            android:text="example"
+            android:textColor="@color/purple_700"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Description:"
             android:textColor="@color/black"
-            android:textSize="26sp"
+            android:textSize="20sp"
             android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/tvDescriptionDetails"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:layout_marginLeft="8dp"
             android:text="example"
             android:textColor="@color/black"

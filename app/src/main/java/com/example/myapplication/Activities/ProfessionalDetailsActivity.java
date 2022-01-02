@@ -3,6 +3,7 @@ package com.example.myapplication.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -24,25 +25,41 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
     private Button orderBtn;
     String emailFromTv;
     TextView tvEmail;
-    TextView infoTv;
+    TextView tvName;
+    TextView tvProf;
+    TextView tvPhone;
+    TextView tvDescription;
+    Uri image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.activity_professional_details);
+
         orderBtn = findViewById(R.id.orderBtn);
-        tvEmail = (TextView) findViewById(R.id.tvEmailDetails);
-        TextView tvDescription = (TextView) findViewById(R.id.tvDescriptionDetails);
+        tvEmail = findViewById(R.id.tvEmailDetails);
+        tvName = findViewById(R.id.nameDetails);
+        tvDescription = findViewById(R.id.tvDescriptionDetails);
+        tvPhone = findViewById(R.id.phoneDetails);
+        tvProf = findViewById(R.id.profDetails);
 
         if(getIntent().hasExtra("selected_user")){
             User user = getIntent().getParcelableExtra("selected_user");
             String email = user.getEmail();
+            String name = user.getFirstName() + " " + user.getLastName();
+            String profession = user.getProfession();
             String description= user.getDescription();
+            String phone = user.getPhone();
+            String seniority= user.getSeniority();
+            String image = user.getUriImage();
+            String countRating = String.valueOf(user.getCountRating());
+            String sumRating = String.valueOf(user.getSumRating());
 
+            tvName.setText(name);
             tvEmail.setText(email);
             tvDescription.setText(description);
+            tvPhone.setText(phone);
+            tvProf.setText(profession);
         }
 
         orderBtn.setOnClickListener(new View.OnClickListener() {
