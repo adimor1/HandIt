@@ -47,7 +47,7 @@
         android:layout_height="70dp"
         android:layout_marginTop="320dp"
         android:ems="10"
-        android:text="Password"
+        android:hint="Password"
         android:inputType="textPassword"/>
 
     <LinearLayout

@@ -9,9 +9,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.myapplication.Models.LoginUser;
@@ -31,16 +34,17 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 import java.util.HashMap;
 
-public class UpdateUser extends AppCompatActivity {
+public class UpdateUser extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private Button updateUser;
     private EditText description;
     private EditText seniority;
-    private EditText profession;
     private ImageView imageProfile;
     private Button changeImage;
     private EditText phone;
-    
+    private Spinner profession;
+    String spinnerTxt = "lala";
+
     DatabaseReference databaseReference;
     StorageReference storageReference;
     FirebaseAuth firebaseAuth;
@@ -58,8 +62,49 @@ public class UpdateUser extends AppCompatActivity {
         imageProfile = findViewById(R.id.imageProfile);
         phone = findViewById(R.id.phone);
 
-        storageReference = FirebaseStorage.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        databaseReference.orderByChild("email").equalTo(LoginUser.getLoginEmail()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot childSnapshot: snapshot.getChildren()){
+                    String key = childSnapshot.getKey();
+                    databaseReference.child(key);
+                    description.setText(String.valueOf(snapshot.child(key).child("description").getValue()));
 
+                    String prof = String.valueOf(snapshot.child(key).child("profession").getValue());
+                    if(prof.equals("Mechanic")){
+                        profession.setSelection(0);
+                    }
+
+                    if(prof.equals("Renovator")){
+                        profession.setSelection(1);
+                    }
+
+                    if(prof.equals("Plumber")){
+                        profession.setSelection(2);
+                    }
+
+                    if(prof.equals("Painter")){
+                        profession.setSelection(3);
+                    }
+
+                    phone.setText(String.valueOf(snapshot.child(key).child("phone").getValue()));
+                    seniority.setText(String.valueOf(snapshot.child(key).child("seniority").getValue()));
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+        //Spinner
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.profession, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        profession.setAdapter(adapter);
+        profession.setOnItemSelectedListener(this);
+
+        //Get image and put in the image prfile
+        storageReference = FirebaseStorage.getInstance().getReference();
         StorageReference profileRef = storageReference.child("users/"+LoginUser.getLoginEmail()+"/profile.jpg");
         profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
@@ -73,9 +118,8 @@ public class UpdateUser extends AppCompatActivity {
             public void onClick(View v) {
                 String txt_description = description.getText().toString();
                 String txt_seniority = seniority.getText().toString();
-                String txt_profession = profession.getText().toString();
-
-                updateUserData(txt_description, txt_seniority, txt_profession);
+                String txt_phone = phone.getText().toString();
+                updateUserData(txt_description, txt_seniority, spinnerTxt, txt_phone);
             }
         });
 
@@ -120,11 +164,12 @@ public class UpdateUser extends AppCompatActivity {
         });
     }
 
-    private void updateUserData(String description, String seniority, String profession) {
+    private void updateUserData(String description, String seniority, String profession, String phone) {
         HashMap User = new HashMap();
         User.put("description", description);
         User.put("seniority", seniority);
         User.put("profession", profession);
+        User.put("phone", phone);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
         databaseReference.orderByChild("email").equalTo(LoginUser.getLoginEmail()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -159,6 +204,17 @@ public class UpdateUser extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String text = parent.getItemAtPosition(position).toString();
+        spinnerTxt = text;
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
 
