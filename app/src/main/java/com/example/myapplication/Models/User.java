@@ -16,6 +16,15 @@ public class User implements Parcelable{
     private String uriImage;
     private double longitude;
     private double latitude;
+    private double distance =0;
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;

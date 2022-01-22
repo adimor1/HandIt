@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.location.Location;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,11 +28,13 @@ public class ProfAdapter extends RecyclerView.Adapter<ProfAdapter.MyViewHolder> 
     ArrayList<User> list;
     User user;
     private ProfListener mprofListener;
+    private LocationUtil locationUtil;
 
-    public ProfAdapter(Context context, ArrayList<User> list, ProfListener profListener) {
+    public ProfAdapter(Context context, ArrayList<User> list, LocationUtil locationUtil, ProfListener profListener) {
         this.context = context;
         this.list = list;
         this.mprofListener = profListener;
+        this.locationUtil = locationUtil;
     }
 
     @NonNull
@@ -44,10 +47,11 @@ public class ProfAdapter extends RecyclerView.Adapter<ProfAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         user = list.get(position);
-        holder.rating.setText(user.getEmail());
+
         holder.description.setText(user.getDescription());
         holder.name.setText(user.getProfession());
         holder.email.setText(user.getEmail());
+        holder.dis.setText(Double.toString(user.getDistance()));
         Uri uri = Uri.parse(user.getUriImage());
         Picasso.get().load(uri).into(holder.imageProf);
     }
@@ -58,7 +62,7 @@ public class ProfAdapter extends RecyclerView.Adapter<ProfAdapter.MyViewHolder> 
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView name, description, rating, email;
+        TextView name, description, dis, email;
         ImageView imageProf;
         ProfListener profListener;
 
@@ -66,7 +70,7 @@ public class ProfAdapter extends RecyclerView.Adapter<ProfAdapter.MyViewHolder> 
             super(itemView);
 
             name = itemView.findViewById(R.id.tvName);
-            rating = itemView.findViewById(R.id.tvRating);
+            dis = itemView.findViewById(R.id.tvRating);
             description = itemView.findViewById(R.id.tvDescription);
             imageProf = itemView.findViewById(R.id.imageProf);
             email = itemView.findViewById(R.id.tvEmail);

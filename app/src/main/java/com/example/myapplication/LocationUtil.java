@@ -50,7 +50,6 @@ public class LocationUtil  extends Activity{
     private boolean isLocationPermissionGranted=false;
     private boolean isTaskComplete = false;
 
-
     public LocationUtil (final Context context,TaskListener l){
         this.context=context;
         listener=l;
@@ -60,33 +59,28 @@ public class LocationUtil  extends Activity{
             startFindLocation();
         }
         else {
-         //   my_permission_handle.ask_permission(Manifest.permission.ACCESS_COARSE_LOCATION,
-                  //  MY_PERMISSIONS_REQUEST_LOCATION,
-                   // context.getString(R.string.Location_permission),
-                  //  context.getString(R.string.location_permission_must_be_confirmed));
-
+            my_permission_handle.ask_permission(Manifest.permission.ACCESS_COARSE_LOCATION,
+                    MY_PERMISSIONS_REQUEST_LOCATION,
+                    ("Location permission"),
+                    ("location permission must be confirmed"));
         }
-
     }
 
     private void showGPSDisabledAlertToUser(){
         if (isShowGPSDisabledAlertToUser){
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-           // alertDialogBuilder.setMessage(context.getString(R.string.GPS_off_do_you_want_to_turn_it_on))
-                  //  .setCancelable(false)
-                 //   .setPositiveButton(android.R.string.yes,
-                        //    new DialogInterface.OnClickListener(){
-                              //  public void onClick(DialogInterface dialog, int id){
-                                //    Intent callGPSSettingIntent = new Intent(
-                                 //           android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            alertDialogBuilder.setMessage("GPS off, do you want to turn it on?")
+                    .setCancelable(false)
+                    .setPositiveButton(android.R.string.yes,
+                            new DialogInterface.OnClickListener(){
+                                public void onClick(DialogInterface dialog, int id){
+                                    Intent callGPSSettingIntent = new Intent(
+                                            android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                                     //context.startActivity(callGPSSettingIntent);
-                                 //   Activity activity = (Activity)context;
-                                  //  activity.startActivityForResult(callGPSSettingIntent, 96);
-
-
-                             //   }
-                         //   }
-        //);
+                                    Activity activity = (Activity)context;
+                                    activity.startActivityForResult(callGPSSettingIntent, 96);
+                                }
+                            });
             alertDialogBuilder.setNegativeButton(android.R.string.no,
                     new DialogInterface.OnClickListener(){
                         public void onClick(DialogInterface dialog, int id){
@@ -95,7 +89,6 @@ public class LocationUtil  extends Activity{
                                 if (!isTaskComplete) {
                                     isTaskComplete=true;
                                     listener.taskComplete(true);
-
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -112,27 +105,19 @@ public class LocationUtil  extends Activity{
                 if (!isTaskComplete) {
                     isTaskComplete=true;
                     listener.taskComplete(true);
-
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-
-
     }
 
-
-
-
-    public double CalculationByDistance(double initialLat, double initialLong,
-                                        double finalLat, double finalLong){
+    public double CalculationByDistance(double initialLat, double initialLong, double finalLat, double finalLong){
         int R = 6371; // km (Earth radius)
         double dLat = toRadians(finalLat-initialLat);
         double dLon = toRadians(finalLong-initialLong);
         initialLat = toRadians(initialLat);
         finalLat = toRadians(finalLat);
-
         double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
                 Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(initialLat) * Math.cos(finalLat);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
@@ -143,7 +128,7 @@ public class LocationUtil  extends Activity{
         return deg * (Math.PI/180);
     }
 
-
+    @SuppressLint("MissingPermission")
     public void setAddress (Location location){
         String cityName = null;
         Geocoder gcd = new Geocoder(context, Locale.getDefault());
@@ -156,14 +141,13 @@ public class LocationUtil  extends Activity{
                 cityName = addresses.get(0).getLocality();
                 fullAddress =  addresses.get(0).getAddressLine(0);
                 if (gpsLocationListener!=null)
-                    //locationManager.removeUpdates(gpsLocationListener);
+                    locationManager.removeUpdates(gpsLocationListener);
                 if (networkLocationListener!=null)
-                 //   locationManager.removeUpdates(networkLocationListener);
+                    locationManager.removeUpdates(networkLocationListener);
                 try {
                     if (!isTaskComplete) {
                         isTaskComplete=true;
                         listener.taskComplete(true);
-
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -173,7 +157,6 @@ public class LocationUtil  extends Activity{
         catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public Location getLocation(){
@@ -189,8 +172,6 @@ public class LocationUtil  extends Activity{
         return fullAddress;
     }
 
-
-
     public boolean getIsuserDidNotWantToTurnOnGps(){
         return isuserDidNotWantToTurnOnGps;
     }
@@ -202,14 +183,11 @@ public class LocationUtil  extends Activity{
                 if (!isTaskComplete) {
                     isTaskComplete=true;
                     listener.taskComplete(true);
-
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-
-
     }
 
     public boolean getIsLocationPermissionGranted(){
@@ -224,51 +202,33 @@ public class LocationUtil  extends Activity{
                 if (!isTaskComplete) {
                     isTaskComplete=true;
                     listener.taskComplete(true);
-
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-
-
     }
 
-
-
     public class MyLocationListener  implements LocationListener {
-
-
-
         @Override
         public void onLocationChanged(Location loc) {
             if (loc!=null && fullAddress==null){
                 location = loc;
                 setAddress(loc);
             }
-
         }
-
         @Override
         public void onProviderDisabled(String provider) {}
-
         @Override
         public void onProviderEnabled(String provider) {}
-
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {}
-
-
     }
 
     @SuppressLint("MissingPermission")
     public void startFindLocation(){
-
         try {
-
             locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-
-
             if (locationManager!=null) {
                 if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                     gpsLocationListener = new MyLocationListener();
@@ -277,20 +237,19 @@ public class LocationUtil  extends Activity{
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            // do something after 15s = 15000 miliseconds
+                            // do something after 15s = 15000 milliseconds
                             if (fullAddress == null) {
                                 try {
                                     if (!isTaskComplete) {
                                         isTaskComplete=true;
                                         listener.taskComplete(true);
-
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
                             }
                         }
-                    }, 15000); //Time in milisecond*/
+                    }, 15000); //Time in milliseconds*/
 
                     new Handler().postDelayed(new Runnable() {
                         @Override
@@ -298,17 +257,11 @@ public class LocationUtil  extends Activity{
                             // do something after 3.2s = 32000 miliseconds
                             if (fullAddress == null) {
                                 if (!isTaskComplete) {
-                          //          Toast.makeText(context, context.getString(R.string.low_gps_signal), Toast.LENGTH_LONG).show();
+                                    Toast.makeText(context, "low gps signal", Toast.LENGTH_LONG).show();
                                 }
                             }
                         }
-                    }, 3200); //Time in milisecond*/
-
-
-
-
-
-
+                    }, 3200); //Time in milliseconds*/
                 }
                 else {
                     if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
@@ -322,26 +275,21 @@ public class LocationUtil  extends Activity{
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            // do something after 0.5s = 500 miliseconds
+                            // do something after 0.5s = 500 milliseconds
                             if (location == null) {
                                 locationManager = (LocationManager)
                                         context.getSystemService(Context.LOCATION_SERVICE);
                                 networkLocationListener = new MyLocationListener();
-
                                 locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, networkLocationListener);
-
                             }
                         }
-                    }, 7000); //Time in milisecond*/
+                    }, 7000); //Time in milliseconds*/
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-
-
 
     private void displayLocationSettingsRequest(final Context context) {
         PendingResult<LocationSettingsResult> result = null;
@@ -349,15 +297,12 @@ public class LocationUtil  extends Activity{
             GoogleApiClient googleApiClient = new GoogleApiClient.Builder(context)
                     .addApi(LocationServices.API).build();
             googleApiClient.connect();
-
             LocationRequest locationRequest = LocationRequest.create();
             locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
             locationRequest.setInterval(10000);
             locationRequest.setFastestInterval(10000 / 2);
-
             LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addLocationRequest(locationRequest);
             builder.setAlwaysShow(true);
-
             result = LocationServices.SettingsApi.checkLocationSettings(googleApiClient, builder.build());
         } catch (Exception e) {
             showGPSDisabledAlertToUser();
@@ -372,7 +317,6 @@ public class LocationUtil  extends Activity{
                         break;
                     case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
                         //Log.i(TAG, "Location settings are not satisfied. Show the user a dialog to upgrade location settings ");
-
                         try {
                             // Show the dialog by calling startResolutionForResult(), and check the result
                             // in onActivityResult().
@@ -388,9 +332,5 @@ public class LocationUtil  extends Activity{
             }
         });
     }
-
-
-
-
 }
 
