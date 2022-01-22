@@ -12,7 +12,26 @@ public class User implements Parcelable{
     private String profession;
     private String seniority;
     private String phone;
+    private String location;
     private String uriImage;
+    private double longitude;
+    private double latitude;
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
 
     public String getUriImage() {
         return uriImage;
@@ -32,6 +51,14 @@ public class User implements Parcelable{
 
     public String getPhone() {
         return phone;
+    }
+
+    public String getLocation() {
+        return phone;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public int getSumRating() {
@@ -85,6 +112,9 @@ public class User implements Parcelable{
             this.phone="Not entered";
             this.sumRating=0;
             this.countRating=0;
+            this.location= "Not entered";
+            this.latitude=0;
+            this.longitude=0;
             this.uriImage="https://firebasestorage.googleapis.com/v0/b/myapplication-67a01.appspot.com/o/empyavatar.png?alt=media&token=1ce9fd8f-d17a-4128-81ef-64d06d3189b9";
         }
     }
@@ -92,9 +122,12 @@ public class User implements Parcelable{
     protected User(Parcel in) {
         email = in.readString();
         firstName = in.readString();
+        lastName = in.readString();
         description = in.readString();
         profession = in.readString();
         seniority = in.readString();
+        phone =  in.readString();
+        location = in.readString();
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -158,8 +191,11 @@ public class User implements Parcelable{
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(email);
         dest.writeString(firstName);
+        dest.writeString(lastName);
         dest.writeString(description);
         dest.writeString(profession);
         dest.writeString(seniority);
+        dest.writeString(phone);
+        dest.writeString(location);
     }
 }

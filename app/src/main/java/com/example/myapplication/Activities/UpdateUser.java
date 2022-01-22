@@ -4,7 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -32,7 +36,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 public class UpdateUser extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -42,7 +49,9 @@ public class UpdateUser extends AppCompatActivity implements AdapterView.OnItemS
     private ImageView imageProfile;
     private Button changeImage;
     private EditText phone;
+    private EditText location;
     private Spinner profession;
+
     String spinnerTxt = "lala";
 
     DatabaseReference databaseReference;
@@ -61,6 +70,7 @@ public class UpdateUser extends AppCompatActivity implements AdapterView.OnItemS
         changeImage = findViewById(R.id.changeImage);
         imageProfile = findViewById(R.id.imageProfile);
         phone = findViewById(R.id.phone);
+        location = findViewById(R.id.location);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
         databaseReference.orderByChild("email").equalTo(LoginUser.getLoginEmail()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -119,7 +129,8 @@ public class UpdateUser extends AppCompatActivity implements AdapterView.OnItemS
                 String txt_description = description.getText().toString();
                 String txt_seniority = seniority.getText().toString();
                 String txt_phone = phone.getText().toString();
-                updateUserData(txt_description, txt_seniority, spinnerTxt, txt_phone);
+                String txt_location = location.getText().toString();
+                updateUserData(txt_description, txt_seniority, spinnerTxt, txt_phone, txt_location);
             }
         });
 
@@ -164,12 +175,20 @@ public class UpdateUser extends AppCompatActivity implements AdapterView.OnItemS
         });
     }
 
-    private void updateUserData(String description, String seniority, String profession, String phone) {
+    private void updateUserData(String description, String seniority, String profession, String phone, String location) {
         HashMap User = new HashMap();
         User.put("description", description);
         User.put("seniority", seniority);
         User.put("profession", profession);
         User.put("phone", phone);
+        User.put("location", location);
+
+        Location loc = getLocationForAddress(UpdateUser.this, location);
+        double latitude = loc.getLatitude();
+        double longitude = loc.getLongitude();
+
+        User.put("latitude", latitude);
+        User.put("longitude", longitude);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
         databaseReference.orderByChild("email").equalTo(LoginUser.getLoginEmail()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -215,6 +234,26 @@ public class UpdateUser extends AppCompatActivity implements AdapterView.OnItemS
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    public Location getLocationForAddress (Context context, String address){
+        Geocoder geocoder = new Geocoder(context);
+        List<Address> addresses = null;
+        Location loc = new Location("getLocationForAddress");;
+        try {
+            addresses = geocoder.getFromLocationName(address, 2);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(addresses.size() == 1) {
+            double latitude= addresses.get(0).getLatitude();
+            double longitude= addresses.get(0).getLongitude();
+            loc.setLatitude(latitude);
+            loc.setLongitude(longitude);
+            return loc;
+        }
+        else
+            return null;
     }
 }
 
