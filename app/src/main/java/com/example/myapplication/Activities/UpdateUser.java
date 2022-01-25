@@ -82,24 +82,30 @@ public class UpdateUser extends AppCompatActivity implements AdapterView.OnItemS
                     description.setText(String.valueOf(snapshot.child(key).child("description").getValue()));
 
                     String prof = String.valueOf(snapshot.child(key).child("profession").getValue());
-                    if(prof.equals("Mechanic")){
+
+                    if(prof.equals("Not entered")){
                         profession.setSelection(0);
                     }
 
-                    if(prof.equals("Renovator")){
+                    if(prof.equals("Mechanic")){
                         profession.setSelection(1);
                     }
 
-                    if(prof.equals("Plumber")){
+                    if(prof.equals("Renovator")){
                         profession.setSelection(2);
                     }
 
-                    if(prof.equals("Painter")){
+                    if(prof.equals("Plumber")){
                         profession.setSelection(3);
+                    }
+
+                    if(prof.equals("Painter")){
+                        profession.setSelection(4);
                     }
 
                     phone.setText(String.valueOf(snapshot.child(key).child("phone").getValue()));
                     seniority.setText(String.valueOf(snapshot.child(key).child("seniority").getValue()));
+                    location.setText(String.valueOf(snapshot.child(key).child("location").getValue()));
                 }
             }
             @Override

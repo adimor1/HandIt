@@ -13,8 +13,7 @@
         android:layout_height="wrap_content"
         android:text="welcom to HandIt"
         android:textSize="26sp"
-        android:textStyle="italic"
-        />
+        android:textStyle="italic" />
 
     <EditText
         android:id="@+id/firstName"

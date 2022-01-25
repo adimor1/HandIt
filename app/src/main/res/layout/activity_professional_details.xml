@@ -158,12 +158,28 @@
 
     <TextView
         android:id="@+id/ratingDetails"
-        android:layout_width="90dp"
-        android:layout_height="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="TextView"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:textSize="30sp" />
+        android:textSize="25sp" />
+
+    <RatingBar
+        android:id="@+id/ratingBar1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:progressTint="@color/yellow"
+        android:layout_gravity="center"
+        android:rating="0"/>
+
+    <Button
+        android:id="@+id/btnSumbit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Sumbit"/>
 
     <Button
         android:id="@+id/orderBtn"
@@ -172,5 +188,6 @@
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
         android:text="Order" />
+
 
 </LinearLayout>

@@ -3,6 +3,8 @@ package com.example.myapplication.Models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.firebase.database.DatabaseReference;
+
 public class User implements Parcelable{
     private String firstName;
     private String lastName;
@@ -17,6 +19,8 @@ public class User implements Parcelable{
     private double longitude;
     private double latitude;
     private double distance =0;
+    private double sumRating;
+    private int countRating;
 
     public void setDistance(double distance) {
         this.distance = distance;
@@ -70,7 +74,7 @@ public class User implements Parcelable{
         this.location = location;
     }
 
-    public int getSumRating() {
+    public double getSumRating() {
         return sumRating;
     }
 
@@ -94,7 +98,7 @@ public class User implements Parcelable{
         this.phone = phone;
     }
 
-    public void setSumRating(int sumRating) {
+    public void setSumRating(double sumRating) {
         this.sumRating = sumRating;
     }
 
@@ -102,8 +106,7 @@ public class User implements Parcelable{
         this.countRating = countRating;
     }
 
-    private int sumRating;
-    private int countRating;
+
 
     public User(){
     }
@@ -136,7 +139,10 @@ public class User implements Parcelable{
         profession = in.readString();
         seniority = in.readString();
         phone =  in.readString();
+        uriImage=in.readString();
         location = in.readString();
+        countRating = in.readInt();
+        sumRating=in.readDouble();
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -206,5 +212,8 @@ public class User implements Parcelable{
         dest.writeString(seniority);
         dest.writeString(phone);
         dest.writeString(location);
+        dest.writeInt(countRating);
+        dest.writeDouble(sumRating);
+        dest.writeString(uriImage);
     }
 }
