@@ -67,7 +67,7 @@ public class User implements Parcelable{
     }
 
     public String getLocation() {
-        return phone;
+        return location;
     }
 
     public void setLocation(String location) {
@@ -211,9 +211,10 @@ public class User implements Parcelable{
         dest.writeString(profession);
         dest.writeString(seniority);
         dest.writeString(phone);
+        dest.writeString(uriImage);
         dest.writeString(location);
         dest.writeInt(countRating);
         dest.writeDouble(sumRating);
-        dest.writeString(uriImage);
+
     }
 }

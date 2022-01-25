@@ -19,11 +19,14 @@ import com.example.myapplication.Models.LoginUser;
 import com.example.myapplication.Models.Order;
 import com.example.myapplication.Models.User;
 import com.example.myapplication.R;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -41,12 +44,12 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
     TextView tvDescription;
     TextView tvSenority;
     TextView tvRating;
-    ImageView image;
+    private ImageView imageDetails;
     private RatingBar rBar;
     private Button btn;
 
     DatabaseReference databaseReference;
-
+    StorageReference storageReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +62,7 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
         tvDescription = findViewById(R.id.tvDescriptionDetails);
         tvPhone = findViewById(R.id.phoneDetails);
         tvProf = findViewById(R.id.profDetails);
-        image = findViewById(R.id.imageDetails);
+        imageDetails = findViewById(R.id.imageDetails);
         tvSenority = findViewById(R.id.tvSeniority);
         tvRating = findViewById(R.id.ratingDetails);
         rBar =  findViewById(R.id.ratingBar1);
@@ -75,7 +78,6 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
             String seniority= user.getSeniority();
             double sumRating = user.getSumRating();
             int countRating = user.getCountRating();
-            Uri uri = Uri.parse(user.getUriImage());
 
             tvName.setText(name);
             tvEmail.setText(email);
@@ -84,6 +86,15 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
             tvProf.setText(profession);
             tvSenority.setText(seniority);
 
+            storageReference = FirebaseStorage.getInstance().getReference();
+            StorageReference profileRef = storageReference.child("users/"+user.getEmail()+"/profile.jpg");
+            profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    Picasso.get().load(uri).into(imageDetails);
+                }
+            });
+
             if(countRating == 0){
                 tvRating.setText(countRating + " Rated [0 Grade]");
             } else {
@@ -91,7 +102,7 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
                 Double calRating = finalRatingCal(sumRating / countRating);
                 tvRating.setText(countRating + " Rated [" + calRating +" Grade]");
             }
-            Picasso.get().load(uri).into(image);
+
 
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
