@@ -106,7 +106,7 @@ public class ProfOrdersActivity extends AppCompatActivity implements OrderProfAd
         public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
             new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
                     .addSwipeRightBackgroundColor(ContextCompat.getColor(ProfOrdersActivity.this, R.color.red))
-                    .addSwipeRightActionIcon(android.R.drawable.ic_menu_close_clear_cancel)
+                    .addSwipeRightActionIcon(R.drawable.ic_baseline)
                     .create()
                     .decorate();
             super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
@@ -130,7 +130,7 @@ public class ProfOrdersActivity extends AppCompatActivity implements OrderProfAd
         public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
             new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
                     .addSwipeLeftBackgroundColor(ContextCompat.getColor(ProfOrdersActivity.this, R.color.green))
-                    .addSwipeLeftActionIcon(android.R.drawable.checkbox_on_background)
+                    .addSwipeLeftActionIcon(R.drawable.ic_3)
                     .create()
                     .decorate();
             super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
