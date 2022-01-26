@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,16 +47,19 @@ public class ProfAdapter extends RecyclerView.Adapter<ProfAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
         user = list.get(position);
 
-        holder.description.setText(user.getDescription());
-        holder.name.setText(user.getProfession());
+        holder.type.setText(user.getProfession());
+        holder.name.setText(user.getFirstName()+" " +user.getLastName());
         holder.email.setText(user.getEmail());
         String disStr = String.format("%.2f", user.getDistance());
         holder.dis.setText(disStr + " Km");
-       //holder.dis.setText(Double.toString(user.getDistance()));
         Uri uri = Uri.parse(user.getUriImage());
         Picasso.get().load(uri).into(holder.imageProf);
+        if(user.getCountRating()!=0){
+            holder.rBar.setRating((float) (finalRatingCal(user.getSumRating() / user.getCountRating()))-1);
+        }
     }
 
     @Override
@@ -64,18 +68,21 @@ public class ProfAdapter extends RecyclerView.Adapter<ProfAdapter.MyViewHolder> 
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView name, description, dis, email;
+        TextView name, type, dis, email;
         ImageView imageProf;
         ProfListener profListener;
+        RatingBar rBar;
 
         public MyViewHolder(@NonNull View itemView,  ProfListener profListener) {
             super(itemView);
 
             name = itemView.findViewById(R.id.tvName);
             dis = itemView.findViewById(R.id.tvRating);
-            description = itemView.findViewById(R.id.tvDescription);
+            type = itemView.findViewById(R.id.tvType);
             imageProf = itemView.findViewById(R.id.imageProf);
             email = itemView.findViewById(R.id.tvEmail);
+            rBar =  itemView.findViewById(R.id.MyRating);
+
             this.profListener = profListener;
 
             itemView.setOnClickListener(this);
@@ -89,5 +96,10 @@ public class ProfAdapter extends RecyclerView.Adapter<ProfAdapter.MyViewHolder> 
 
     public interface ProfListener{
         void profClick(int position);
+    }
+
+    private double finalRatingCal(double finalRating){
+        return Math.ceil(finalRating * 2) / 2;
+
     }
 }

@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.myapplication.Activities.ProfessionalDetailsActivity;
 import com.example.myapplication.LocationUtil;
+import com.example.myapplication.Models.LoginUser;
 import com.example.myapplication.Models.User;
 import com.example.myapplication.ProfAdapter;
 import com.example.myapplication.R;
@@ -145,14 +146,17 @@ public class ProfessionalsListActivity extends AppCompatActivity implements Prof
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
 
                     User user = dataSnapshot.getValue(User.class);
                     if(user.isProf()){
-                        double dis = locationUtil.getDistnace(user.getLatitude(), user.getLongitude());
-                        user.setDistance(dis);
-                        list.add(user);
-                        list.sort(Comparator.comparing(User::getDistance));
+                        if(!(user.getEmail()).equals(LoginUser.getLoginEmail())){
+                            double dis = locationUtil.getDistnace(user.getLatitude(), user.getLongitude());
+                            user.setDistance(dis);
+                            list.add(user);
+                            list.sort(Comparator.comparing(User::getDistance));
+                        }
                     }
                 }
                 myAdapter.notifyDataSetChanged();

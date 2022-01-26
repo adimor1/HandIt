@@ -30,6 +30,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
 import java.util.HashMap;
 
 public class ProfessionalDetailsActivity extends AppCompatActivity {
@@ -120,7 +121,7 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
                     User.put("sumRating", sumRating + rBar.getRating());
 
                     databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-                    databaseReference.orderByChild("email").equalTo(LoginUser.getLoginEmail()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    databaseReference.orderByChild("email").equalTo(user.getEmail()).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             for(DataSnapshot childSnapshot: snapshot.getChildren()){
@@ -157,6 +158,8 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
         dialog.setContentView(R.layout.custom_dialog);
         final EditText timeEt = dialog.findViewById(R.id.timeEt);
         final EditText dateEt = dialog.findViewById(R.id.dateEt);
+
+   
 
         Button submitButton = dialog.findViewById(R.id.submit_button);
 
