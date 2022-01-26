@@ -77,13 +77,14 @@ public class Order implements Parcelable{
         dest.writeString(time);
         dest.writeString(date);
         dest.writeString(id);
-
+        dest.writeInt(status);
     }
 
     protected Order(Parcel in) {
         time = in.readString();
         date = in.readString();
         id = in.readString();
+        status=in.readInt();
     }
 
     public static final Parcelable.Creator<Order> CREATOR = new Parcelable.Creator<Order>() {

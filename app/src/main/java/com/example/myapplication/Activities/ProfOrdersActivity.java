@@ -123,6 +123,7 @@ public class ProfOrdersActivity extends AppCompatActivity implements OrderProfAd
         public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
             String id = list.get(viewHolder.getAdapterPosition()).getid();
             updateStatus(1, id);
+
             myAdapter.notifyDataSetChanged();
         }
 

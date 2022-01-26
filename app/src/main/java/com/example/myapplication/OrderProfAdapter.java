@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +44,16 @@ public class OrderProfAdapter extends RecyclerView.Adapter<OrderProfAdapter.MyVi
         order = list.get(position);
         holder.name.setText(order.getDate()+" " +order.getTime());
 
+        if(order.getStatus()==1){
+            holder.status.setText("Approv");
+            holder.status.setTextColor(Color.rgb(0,128,0));
+        }
+
+        if(order.getStatus()==2){
+            holder.status.setText("Canceled");
+            holder.status.setTextColor(Color.rgb(178,34,34));
+        }
+
     }
 
     @Override
@@ -52,12 +63,15 @@ public class OrderProfAdapter extends RecyclerView.Adapter<OrderProfAdapter.MyVi
 
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView name;
+        TextView status;
         OrderProfListener orderProfListener;
 
         public MyViewHolder(@NonNull View itemView,  OrderProfListener orderProfListener) {
             super(itemView);
 
             name = itemView.findViewById(R.id.tvTime);
+            status = itemView.findViewById(R.id.status);
+
 
             this.orderProfListener = orderProfListener;
 
