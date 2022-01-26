@@ -29,12 +29,12 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="280dp"
-            android:textSize="65dp"
             android:text="HandIt"
-            android:textStyle="bold"
             android:textColor="#000"
-            android:layout_centerHorizontal="true"/>
+            android:textSize="65dp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/emailLogin"
@@ -43,6 +43,11 @@
             android:layout_marginTop="360dp"
             android:ems="10"
             android:hint="Email"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:drawablePadding="12dp"
+            android:background="@drawable/custom_input"
+            android:drawableStart="@drawable/custom_email_icon"
             android:inputType="textEmailAddress"
             />
 
@@ -51,8 +56,13 @@
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:ems="10"
-            android:layout_marginTop="430dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:layout_marginTop="450dp"
             android:hint="Password"
+            android:background="@drawable/custom_input"
+            android:drawablePadding="12dp"
+            android:drawableStart="@drawable/custom_lock_icon"
             android:inputType="textPassword"/>
 
 
