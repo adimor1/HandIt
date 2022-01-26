@@ -7,11 +7,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Activities.ProfessionalDetailsActivity"
-    android:padding="10dp">
+    android:padding="3dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="140dp"
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -56,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginTop="10dp"
+
         android:orientation="horizontal">
 
         <ImageView
@@ -71,6 +71,7 @@
             android:id="@+id/tvEmailDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="8dp"
             android:paddingTop="8dp"
             android:text="example"
@@ -84,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="3dp">
 
         <ImageView
             android:id="@+id/imageView2"
@@ -101,6 +102,34 @@
             android:layout_marginLeft="8dp"
             android:paddingTop="8dp"
             android:text="example"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/purple_700"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginTop="3dp">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            app:srcCompat="@android:drawable/ic_dialog_map"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            app:tint="@color/purple_200"/>
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="215dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:paddingTop="8dp"
+            android:text="example"
+            android:layout_gravity="center_vertical"
             android:textColor="@color/purple_700"
             android:textSize="20sp" />
     </LinearLayout>
@@ -110,7 +139,7 @@
         android:layout_height="40dp"
         android:layout_gravity="center_vertical"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="10dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -135,7 +164,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="3dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -148,7 +177,7 @@
         <TextView
             android:id="@+id/tvDescriptionDetails"
             android:layout_width="wrap_content"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:text="example"
             android:textColor="@color/black"
@@ -162,13 +191,13 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:textSize="25sp" />
 
     <RatingBar
         android:id="@+id/ratingBar1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:numStars="5"
         android:progressTint="@color/yellow"
         android:layout_gravity="center"
@@ -185,7 +214,7 @@
         android:id="@+id/orderBtn"
         android:layout_width="200dp"
         android:layout_height="60dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="45dp"
         android:layout_gravity="center"
         android:text="Order" />
 

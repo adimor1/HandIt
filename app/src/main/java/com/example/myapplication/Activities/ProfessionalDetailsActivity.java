@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
     TextView tvDescription;
     TextView tvSenority;
     TextView tvRating;
+    TextView tvlocation;
     private ImageView imageDetails;
     private RatingBar rBar;
     private Button btn;
@@ -67,6 +69,7 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
         tvRating = findViewById(R.id.ratingDetails);
         rBar =  findViewById(R.id.ratingBar1);
         btn = findViewById(R.id.btnSumbit);
+        tvlocation = findViewById(R.id.location);
 
         if(getIntent().hasExtra("selected_user")){
             User user = getIntent().getParcelableExtra("selected_user");
@@ -76,6 +79,7 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
             String description= user.getDescription();
             String phone = user.getPhone();
             String seniority= user.getSeniority();
+            String location = user.getLocation();
             double sumRating = user.getSumRating();
             int countRating = user.getCountRating();
 
@@ -85,6 +89,7 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
             tvPhone.setText(phone);
             tvProf.setText(profession);
             tvSenority.setText(seniority);
+            tvlocation.setText(location);
 
             storageReference = FirebaseStorage.getInstance().getReference();
             StorageReference profileRef = storageReference.child("users/"+user.getEmail()+"/profile.jpg");
