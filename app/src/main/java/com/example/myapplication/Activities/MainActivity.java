@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private Button userList;
     private Button userProfile;
     private Button professionals;
+    private Button orders;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         add = findViewById(R.id.add);
         userProfile = findViewById(R.id.userProfile);
         professionals = findViewById(R.id.professionals);
+        orders = findViewById(R.id.orders);
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +55,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ProfessionalsListActivity.class));
+            }
+        });
+
+        orders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ProfOrdersActivity.class));
             }
         });
     }

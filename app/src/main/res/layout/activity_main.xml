@@ -29,6 +29,13 @@
             android:layout_margin="10dp"
             android:text="search prof" />
 
+        <Button
+            android:id="@+id/orders"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="10dp"
+            android:text="your orders"  />
+
     </LinearLayout>
 
     <Button

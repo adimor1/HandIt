@@ -11,28 +11,22 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.myapplication.Activities.ProfessionalDetailsActivity;
 import com.example.myapplication.LocationUtil;
 import com.example.myapplication.Models.LoginUser;
 import com.example.myapplication.Models.User;
 import com.example.myapplication.ProfAdapter;
 import com.example.myapplication.R;
 import com.example.myapplication.TaskListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
+
 
 import java.util.ArrayList;
 import java.util.Comparator;
