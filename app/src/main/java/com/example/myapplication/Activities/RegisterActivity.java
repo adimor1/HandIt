@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -41,9 +42,8 @@ public class RegisterActivity extends AppCompatActivity {
     private DatabaseReference reference;
     private EditText firstName;
     private EditText lastName;
-    private Switch isProf;
-    private TextView IsProfText;
-    StorageReference storageReference;
+     Switch isProf;
+     TextView IsProfText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +76,17 @@ public class RegisterActivity extends AppCompatActivity {
                     registerUser(txt_email, txt_password);
                     addUser(txt_firstName, txt_lastName, txt_email, isProfS);
                     LoginUser.setLoginEmail(txt_email);
+                }
+            }
+        });
+
+        isProf.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isProf.isChecked()){
+                    IsProfText.setText("I'm Professional");
+                } else {
+                    IsProfText.setText("I'm Not Professional");
                 }
             }
         });

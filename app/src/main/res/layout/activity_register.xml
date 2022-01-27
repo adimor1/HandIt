@@ -21,6 +21,10 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginTop="80dp"
+        android:drawableStart="@drawable/custom_name_icon"
+        android:drawablePadding="12dp"
+        android:paddingStart="12dp"
+        android:background="@drawable/custom_input"
         android:ems="10"
         android:hint="First Name"
         />
@@ -29,7 +33,11 @@
         android:id="@+id/lastName"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:drawableStart="@drawable/custom_name2_icon"
+        android:drawablePadding="12dp"
+        android:paddingStart="12dp"
         android:layout_marginTop="160dp"
+        android:background="@drawable/custom_input"
         android:ems="10"
         android:hint="Last Name" />
 
@@ -38,9 +46,13 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_marginTop="240dp"
+        android:background="@drawable/custom_input"
         android:ems="10"
+        android:drawableStart="@drawable/custom_email_icon"
+        android:drawablePadding="12dp"
+        android:paddingStart="12dp"
         android:hint="Email"
-        android:inputType="textEmailAddress"/>
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/password"
@@ -48,6 +60,10 @@
         android:layout_height="70dp"
         android:layout_marginTop="320dp"
         android:ems="10"
+        android:drawableStart="@drawable/custom_lock_icon"
+        android:drawablePadding="12dp"
+        android:paddingStart="12dp"
+        android:background="@drawable/custom_input"
         android:hint="Password"
         android:inputType="textPassword" />
 

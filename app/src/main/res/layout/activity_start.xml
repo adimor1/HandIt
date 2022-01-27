@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="10dp"
     android:paddingLeft="40dp"
     android:paddingRight="40dp"
-    android:paddingBottom="20dp"
-    tools:context=".Activities.StartActivity">
+    tools:context=".Activities.StartActivity"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,77 +16,79 @@
         tools:layout_editor_absoluteY="16dp">
 
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_centerHorizontal="true"
-            android:paddingTop="15dp"
-            app:srcCompat="@mipmap/ic_launcher_foreground" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="280dp"
-            android:text="HandIt"
-            android:textColor="#000"
-            android:textSize="65dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/emailLogin"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="360dp"
-            android:ems="10"
-            android:hint="Email"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:drawablePadding="12dp"
-            android:background="@drawable/custom_input"
-            android:drawableStart="@drawable/custom_email_icon"
-            android:inputType="textEmailAddress"
-            />
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/passwordLogin"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:ems="10"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            android:layout_marginTop="450dp"
-            android:hint="Password"
-            android:background="@drawable/custom_input"
-            android:drawablePadding="12dp"
-            android:drawableStart="@drawable/custom_lock_icon"
-            android:inputType="textPassword"/>
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+
+                app:srcCompat="@mipmap/ic_launcher_foreground" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HandIt"
+                android:textColor="#000"
+                android:textSize="65dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/emailLogin"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/custom_email_icon"
+                android:drawablePadding="12dp"
+                android:ems="10"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp" />
+
+            <EditText
+                android:id="@+id/passwordLogin"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/custom_lock_icon"
+                android:drawablePadding="12dp"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp" />
+
+            <Button
+                android:id="@+id/register"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:inputType="textCapCharacters"
+                android:paddingTop="15dp"
+                android:text="Don't have an account? Sign Up"
+                android:textColor="@color/design_default_color_on_secondary"
+                android:textSize="18sp"
+                app:backgroundTint="@android:color/white" />
+
+            <Button
+                android:id="@+id/login"
+                android:layout_width="250dp"
+                android:layout_height="60dp"
+                android:inputType="textCapCharacters"
+                android:text="Login"
+                android:textSize="20sp" />
+
+        </LinearLayout>
 
 
-        <Button
-            android:id="@+id/register"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="580dp"
-            android:text="Don't have an account? Sign Up"
-            android:textColor="@color/design_default_color_on_secondary"
-            android:textSize="18sp"
-            android:inputType="textCapCharacters"
-            app:backgroundTint="@android:color/white" />
-
-        <Button
-            android:id="@+id/login"
-            android:layout_width="250dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="530dp"
-            android:layout_centerHorizontal="true"
-            android:inputType="textCapCharacters"
-            android:textSize="20sp"
-            android:text="Login" />
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
