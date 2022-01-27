@@ -36,7 +36,10 @@
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
             android:inputType="number"
-            android:hint="Seniority (Years)" />
+            android:hint="Seniority (Years)"
+            android:drawablePadding="12dp"
+            android:paddingStart="12dp"
+            android:background="@drawable/custom_input"/>
 
         <EditText
             android:id="@+id/description"
@@ -44,7 +47,10 @@
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
             android:ems="10"
-            android:hint="Description" />
+            android:hint="Description"
+            android:drawablePadding="12dp"
+            android:paddingStart="12dp"
+            android:background="@drawable/custom_input"/>
 
 
         <EditText
@@ -53,6 +59,9 @@
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
             android:ems="10"
+            android:drawablePadding="12dp"
+            android:paddingStart="12dp"
+            android:background="@drawable/custom_input"
             android:hint="Phone"
             android:inputType="phone"/>
 
@@ -61,6 +70,9 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
+            android:drawablePadding="12dp"
+            android:paddingStart="12dp"
+            android:background="@drawable/custom_input"
             android:ems="10"
             android:hint="Full Location" />
 
