@@ -19,6 +19,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -28,6 +33,7 @@ public class StartActivity extends AppCompatActivity {
     private EditText password;
     private Button loginBtn;
     private FirebaseAuth auth;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +53,11 @@ public class StartActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String txt_email = email.getText().toString();
                 String txt_password = password.getText().toString();
-                loginUser(txt_email, txt_password);
+                if(txt_email.equals("") || txt_password.equals("")){
+                    Toast.makeText(StartActivity.this, "Missing password or email", Toast.LENGTH_SHORT).show();
+                }else{
+                    loginUser(txt_email, txt_password);
+                }
             }
         });
 
@@ -66,10 +76,37 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(StartActivity.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(StartActivity.this, MainActivity.class));
+                    startActivity(email);
                     LoginUser.setLoginEmail(email);
                 }
+                else {
+                    Toast.makeText(StartActivity.this, "Incorrect password or email", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void startActivity(String email){
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        databaseReference.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot childSnapshot: snapshot.getChildren()){
+                    String key = childSnapshot.getKey();
+                    databaseReference.child(key);
+                    Boolean prof = (Boolean) snapshot.child(key).child("prof").getValue();
+
+                    if(prof){
+                        startActivity(new Intent(StartActivity.this, MainActivity.class));
+                    }
+                    else{
+                        startActivity(new Intent(StartActivity.this, MainActivityForClient.class));
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
             }
         });
     }

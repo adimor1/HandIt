@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".Activities.MainActivityForClient"
+            android:exported="false" />
+        <activity
             android:name=".Activities.ProfOrdersActivity"
             android:exported="false" />
         <activity
@@ -30,7 +33,7 @@
         <activity
             android:name=".Activities.RegisterActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".Activities.StartActivity"
             android:exported="true"

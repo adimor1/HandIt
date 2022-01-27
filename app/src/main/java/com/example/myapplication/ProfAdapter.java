@@ -53,8 +53,14 @@ public class ProfAdapter extends RecyclerView.Adapter<ProfAdapter.MyViewHolder> 
         holder.type.setText(user.getProfession());
         holder.name.setText(user.getFirstName()+" " +user.getLastName());
         holder.email.setText(user.getEmail());
-        String disStr = String.format("%.2f", user.getDistance());
-        holder.dis.setText(disStr + " Km");
+        String disStr;
+        if(user.getDistance()==-1) {
+            disStr = "";
+            holder.dis.setText(disStr);
+        } else {
+            disStr = String.format("%.2f", user.getDistance());
+            holder.dis.setText(disStr + " Km");
+        }
         Uri uri = Uri.parse(user.getUriImage());
         Picasso.get().load(uri).into(holder.imageProf);
         if(user.getCountRating()!=0){

@@ -23,8 +23,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -42,8 +45,11 @@ public class RegisterActivity extends AppCompatActivity {
     private DatabaseReference reference;
     private EditText firstName;
     private EditText lastName;
-     Switch isProf;
-     TextView IsProfText;
+    Switch isProf;
+    TextView IsProfText;
+    String txt_firstName, txt_lastName, txt_email, txt_password;
+    Boolean isProfS;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +68,11 @@ public class RegisterActivity extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String txt_firstName = firstName.getText().toString();
-                String txt_lastName = lastName.getText().toString();
-                String txt_email = email.getText().toString();
-                String txt_password = password.getText().toString();
-                Boolean isProfS = isProf.isChecked();
+                 txt_firstName = firstName.getText().toString();
+                 txt_lastName = lastName.getText().toString();
+                 txt_email = email.getText().toString();
+                 txt_password = password.getText().toString();
+                 isProfS = isProf.isChecked();
 
                 if(TextUtils.isEmpty(txt_email) || TextUtils.isEmpty((txt_password))) {
                     Toast.makeText(RegisterActivity.this, "Empty Credentials", Toast.LENGTH_SHORT).show();
@@ -74,8 +80,6 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "Short Password", Toast.LENGTH_SHORT).show();
                 } else {
                     registerUser(txt_email, txt_password);
-                    addUser(txt_firstName, txt_lastName, txt_email, isProfS);
-                    LoginUser.setLoginEmail(txt_email);
                 }
             }
         });
@@ -106,10 +110,37 @@ public class RegisterActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(RegisterActivity.this, "Register User Successful", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                    startActivity(email);
+                    addUser(txt_firstName, txt_lastName, txt_email, isProfS);
+                    LoginUser.setLoginEmail(txt_email);
                 } else {
                     Toast.makeText(RegisterActivity.this, "Register User Failed", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+    }
+
+    private void startActivity(String email){
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+        databaseReference.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot childSnapshot: snapshot.getChildren()){
+                    String key = childSnapshot.getKey();
+                    databaseReference.child(key);
+                    Boolean prof = (Boolean) snapshot.child(key).child("prof").getValue();
+
+                    if(prof){
+                        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                    }
+                    else{
+                        startActivity(new Intent(RegisterActivity.this, MainActivityForClient.class));
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
             }
         });
     }

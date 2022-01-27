@@ -87,8 +87,16 @@ public class ProfessionalsListActivity extends AppCompatActivity implements Prof
                             noLocationFound = true;
                     }
                 }
-                is_location_process_end = true;
-                adapterHandler();
+
+                if ( !isLocationPermissionGranted || userDidNotWantToTurnOnGps) {
+                    is_location_process_end = true;
+                    adapterHandler(false);
+                }
+                else {
+                    is_location_process_end = true;
+                    adapterHandler(true);
+                }
+
             }
         };
         locationUtil = new LocationUtil(this, location_listener);
@@ -124,7 +132,7 @@ public class ProfessionalsListActivity extends AppCompatActivity implements Prof
         }
     }
 
-    private void adapterHandler(){
+    private void adapterHandler(boolean permission){
         recyclerView = findViewById(R.id.professionalsList);
         database = FirebaseDatabase.getInstance().getReference("Users");
         recyclerView.setHasFixedSize(true);
@@ -146,7 +154,13 @@ public class ProfessionalsListActivity extends AppCompatActivity implements Prof
                     User user = dataSnapshot.getValue(User.class);
                     if(user.isProf()){
                         if(!(user.getEmail()).equals(LoginUser.getLoginEmail())){
-                            double dis = locationUtil.getDistnace(user.getLatitude(), user.getLongitude());
+                            double dis;
+                            if(permission){
+                                 dis = locationUtil.getDistnace(user.getLatitude(), user.getLongitude());
+                            }
+                            else {
+                                 dis = -1;
+                            }
                             user.setDistance(dis);
                             list.add(user);
                             list.sort(Comparator.comparing(User::getDistance));
