@@ -42,7 +42,9 @@
             android:hint="Seniority (Years)"
             android:drawablePadding="12dp"
             android:paddingStart="12dp"
-            android:background="@drawable/custom_input"/>
+            android:background="@drawable/custom_input"
+            android:drawableStart="@drawable/custom_work_icon"
+       />
 
         <EditText
             android:id="@+id/description"
@@ -53,7 +55,8 @@
             android:hint="Description"
             android:drawablePadding="12dp"
             android:paddingStart="12dp"
-            android:background="@drawable/custom_input"/>
+            android:background="@drawable/custom_input"
+            android:drawableStart="@drawable/custom_des_icon"/>
 
 
         <EditText
@@ -65,6 +68,7 @@
             android:drawablePadding="12dp"
             android:paddingStart="12dp"
             android:background="@drawable/custom_input"
+            android:drawableStart="@drawable/custom_phone_icon"
             android:hint="Phone"
             android:inputType="phone"/>
 
@@ -76,6 +80,7 @@
             android:drawablePadding="12dp"
             android:paddingStart="12dp"
             android:background="@drawable/custom_input"
+            android:drawableStart="@drawable/custom_location_icon"
             android:ems="10"
             android:hint="Full Location" />
 
@@ -98,7 +103,7 @@
                 android:id="@+id/changeImage"
                 android:layout_width="150dp"
                 android:layout_height="68dp"
-                android:text="Change Image"
+                android:text="Image"
                 android:gravity="center"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"/>

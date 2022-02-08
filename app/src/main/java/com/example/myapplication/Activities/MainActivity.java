@@ -13,6 +13,8 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Models.LoginUser;
@@ -30,10 +32,14 @@ public class MainActivity extends AppCompatActivity {
     private Button logout;
     private Button add;
     private Button userList;
-    private Button userProfile;
-    private Button professionals;
-    private Button orders;
-    private Button flash;
+    private ImageButton userProfile;
+    private ImageButton professionals;
+    private ImageButton orders;
+    private ImageButton orderClient;
+    private TextView tvOrder;
+    private TextView tvSearch;
+    private TextView tvUpdate;
+    private TextView tvOrderClient;
 
     DatabaseReference databaseReference;
 
@@ -48,7 +54,12 @@ public class MainActivity extends AppCompatActivity {
         add = findViewById(R.id.add);
         userProfile = findViewById(R.id.userProfile);
         professionals = findViewById(R.id.professionals);
+        orderClient = findViewById(R.id.ordersClient);
         orders = findViewById(R.id.orders);
+        tvOrder = findViewById(R.id.textOrders);
+        tvOrderClient = findViewById(R.id.textClientOrder);
+        tvSearch = findViewById(R.id.textSearch);
+        tvUpdate = findViewById(R.id.textUpdate);
 
 
             databaseReference = FirebaseDatabase.getInstance().getReference("Users");
@@ -67,9 +78,23 @@ public class MainActivity extends AppCompatActivity {
                         String description = (String) snapshot.child(key).child("description").getValue();
 
                         if(!prof){
-                            userProfile.setVisibility(View.GONE);
-                            orders.setVisibility(View.GONE);
+                            professionals.setVisibility(View.VISIBLE);
+                            orderClient.setVisibility(View.VISIBLE);
+                            tvOrderClient.setVisibility(View.VISIBLE);
+                            tvSearch.setVisibility(View.VISIBLE);
+                            logout.setVisibility(View.VISIBLE);
                         } else {
+                            userProfile.setVisibility(View.VISIBLE);
+                            professionals.setVisibility(View.VISIBLE);
+                            userProfile.setVisibility(View.VISIBLE);
+                            orders.setVisibility(View.VISIBLE);
+                            orderClient.setVisibility(View.VISIBLE);
+                            tvOrder.setVisibility(View.VISIBLE);
+                            tvOrderClient.setVisibility(View.VISIBLE);
+                            tvSearch.setVisibility(View.VISIBLE);
+                            tvUpdate.setVisibility(View.VISIBLE);
+                            logout.setVisibility(View.VISIBLE);
+
                             if(phone.equals("") && location.equals("") && seniority.equals("") && profession.equals("") && description.equals("")){
                                 userProfile.setBackgroundColor(Color.RED);
                                 Handler h = new Handler();
