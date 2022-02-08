@@ -138,7 +138,22 @@ public class UpdateUser extends AppCompatActivity implements AdapterView.OnItemS
                 String txt_seniority = seniority.getText().toString();
                 String txt_phone = phone.getText().toString();
                 String txt_location = location.getText().toString();
-                updateUserData(txt_description, txt_seniority, spinnerTxt, txt_phone, txt_location);
+
+                if(!txt_location.equals("")){
+                    Location loc = getLocationForAddress(UpdateUser.this, txt_location);
+                    if(loc == null){
+                        Toast.makeText(UpdateUser.this, "Location not found", Toast.LENGTH_SHORT).show();
+                    }else {
+                        if(txt_description.equals("") || txt_seniority.equals("")|| txt_phone.equals("")){
+                            Toast.makeText(UpdateUser.this, "Details are missing!", Toast.LENGTH_SHORT).show();
+                        }else{
+                            updateUserData(txt_description, txt_seniority, spinnerTxt, txt_phone, txt_location);
+                            Toast.makeText(UpdateUser.this, "Details saved!", Toast.LENGTH_SHORT).show();
+                        }
+                }
+                }else{
+                    Toast.makeText(UpdateUser.this, "Details are missing!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -241,7 +256,6 @@ public class UpdateUser extends AppCompatActivity implements AdapterView.OnItemS
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
     public Location getLocationForAddress (Context context, String address){

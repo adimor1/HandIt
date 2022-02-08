@@ -118,13 +118,13 @@ public class User implements Parcelable{
         this.lastName = lastName;
 
         if(isProf){
-            this.description = "Not entered";
-            this.profession = "Not entered";
-            this.seniority = "Not entered";
-            this.phone="Not entered";
+            this.description = "";
+            this.profession = "";
+            this.seniority = "";
+            this.phone="";
             this.sumRating=0;
             this.countRating=0;
-            this.location= "Not entered";
+            this.location= "";
             this.latitude=0;
             this.longitude=0;
             this.uriImage="https://firebasestorage.googleapis.com/v0/b/myapplication-67a01.appspot.com/o/empyavatar.png?alt=media&token=1ce9fd8f-d17a-4128-81ef-64d06d3189b9";

@@ -5,8 +5,13 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -28,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private Button userProfile;
     private Button professionals;
     private Button orders;
+    private Button flash;
 
     DatabaseReference databaseReference;
 
@@ -54,9 +60,26 @@ public class MainActivity extends AppCompatActivity {
                         databaseReference.child(key);
                         Boolean prof = (Boolean) snapshot.child(key).child("prof").getValue();
 
+                        String phone = (String) snapshot.child(key).child("phone").getValue();
+                        String location = (String) snapshot.child(key).child("location").getValue();
+                        String seniority = (String) snapshot.child(key).child("seniority").getValue();
+                        String profession = (String) snapshot.child(key).child("profession").getValue();
+                        String description = (String) snapshot.child(key).child("description").getValue();
+
                         if(!prof){
                             userProfile.setVisibility(View.GONE);
                             orders.setVisibility(View.GONE);
+                        } else {
+                            if(phone.equals("") && location.equals("") && seniority.equals("") && profession.equals("") && description.equals("")){
+                                userProfile.setBackgroundColor(Color.RED);
+                                Handler h = new Handler();
+                                h.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        starFlash();
+                                    }
+                                },1000);
+                            }
                         }
                     }
                 }
@@ -97,5 +120,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, ProfOrdersActivity.class));
             }
         });
+    }
+
+    public void starFlash() {
+        Animation mAnimation = new AlphaAnimation(1,0);
+        mAnimation.setDuration(200);
+        mAnimation.setInterpolator(new LinearInterpolator());
+        mAnimation.setRepeatCount(10);
+        mAnimation.setRepeatMode(Animation.REVERSE);
+        userProfile.startAnimation(mAnimation);
     }
 }
