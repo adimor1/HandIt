@@ -55,6 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         firstName = findViewById(R.id.firstName);
         lastName = findViewById(R.id.lastName);
@@ -110,7 +111,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(RegisterActivity.this, "Register User Successful", Toast.LENGTH_SHORT).show();
-                    startActivity(email);
+                    startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                     addUser(txt_firstName, txt_lastName, txt_email, isProfS);
                     LoginUser.setLoginEmail(txt_email);
                 } else {
@@ -120,30 +121,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void startActivity(String email){
-
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-        databaseReference.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot childSnapshot: snapshot.getChildren()){
-                    String key = childSnapshot.getKey();
-                    databaseReference.child(key);
-                    Boolean prof = (Boolean) snapshot.child(key).child("prof").getValue();
-
-                    if(prof){
-                        startActivity(new Intent(RegisterActivity.this, MainActivity.class));
-                    }
-                    else{
-                        startActivity(new Intent(RegisterActivity.this, MainActivityForClient.class));
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-    }
 }
 
 

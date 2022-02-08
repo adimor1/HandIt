@@ -76,37 +76,12 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    startActivity(email);
+                    startActivity(new Intent(StartActivity.this, MainActivity.class));
                     LoginUser.setLoginEmail(email);
                 }
                 else {
                     Toast.makeText(StartActivity.this, "Incorrect password or email", Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
-    }
-
-    private void startActivity(String email){
-
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-        databaseReference.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot childSnapshot: snapshot.getChildren()){
-                    String key = childSnapshot.getKey();
-                    databaseReference.child(key);
-                    Boolean prof = (Boolean) snapshot.child(key).child("prof").getValue();
-
-                    if(prof){
-                        startActivity(new Intent(StartActivity.this, MainActivity.class));
-                    }
-                    else{
-                        startActivity(new Intent(StartActivity.this, MainActivityForClient.class));
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
             }
         });
     }

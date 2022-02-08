@@ -54,6 +54,12 @@ public class OrderProfAdapter extends RecyclerView.Adapter<OrderProfAdapter.MyVi
             holder.status.setTextColor(Color.rgb(178,34,34));
         }
 
+        String place = order.getAddress();
+        if(place.contains(", Israel")){
+            place = place.replace(", Israel", "");
+        }
+        holder.phone.setText(order.getPhone());
+        holder.address.setText(place);
     }
 
     @Override
@@ -64,6 +70,8 @@ public class OrderProfAdapter extends RecyclerView.Adapter<OrderProfAdapter.MyVi
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView name;
         TextView status;
+        TextView phone;
+        TextView address;
         OrderProfListener orderProfListener;
 
         public MyViewHolder(@NonNull View itemView,  OrderProfListener orderProfListener) {
@@ -71,7 +79,8 @@ public class OrderProfAdapter extends RecyclerView.Adapter<OrderProfAdapter.MyVi
 
             name = itemView.findViewById(R.id.tvTime);
             status = itemView.findViewById(R.id.status);
-
+            phone = itemView.findViewById(R.id.tvContact);
+            address = itemView.findViewById(R.id.tvPlace);
 
             this.orderProfListener = orderProfListener;
 

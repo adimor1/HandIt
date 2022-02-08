@@ -12,13 +12,33 @@ public class Order implements Parcelable{
     private String time;
     private String date;
     private String id;
+    private String phone;
+    private String address;
 
-    public Order(String emailPro, String emailCl, String time, String date) {
+    public Order(String emailPro, String emailCl, String time, String date, String phone, String address) {
         this.clientEmail = emailCl;
         this.proEmail = emailPro ;
         this.time = time;
         this.date = date;
         this.id = UUID.randomUUID().toString();
+        this.phone =phone;
+        this.address=address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getid(){
@@ -78,6 +98,8 @@ public class Order implements Parcelable{
         dest.writeString(date);
         dest.writeString(id);
         dest.writeInt(status);
+        dest.writeString(phone);
+        dest.writeString(address);
     }
 
     protected Order(Parcel in) {
@@ -85,6 +107,8 @@ public class Order implements Parcelable{
         date = in.readString();
         id = in.readString();
         status=in.readInt();
+        phone = in.readString();
+        address = in.readString();
     }
 
     public static final Parcelable.Creator<Order> CREATOR = new Parcelable.Creator<Order>() {

@@ -63,6 +63,8 @@ public class UpdateUser extends AppCompatActivity implements AdapterView.OnItemS
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_user);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         updateUser = findViewById(R.id.updateUser);
         description = findViewById(R.id.description);
         seniority = findViewById(R.id.seniority);

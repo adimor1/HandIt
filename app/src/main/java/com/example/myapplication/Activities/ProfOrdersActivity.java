@@ -46,6 +46,7 @@ public class ProfOrdersActivity extends AppCompatActivity implements OrderProfAd
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prof_orders);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         adapterHandler();
     }
 

@@ -13,27 +13,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".Activities.MainActivityForClient"
-            android:exported="false" />
-        <activity
             android:name=".Activities.ProfOrdersActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Activities.MainActivity"/>
         <activity
             android:name=".Activities.ProfessionalDetailsActivity"
-            android:exported="false" />
+            android:exported="false"
+           android:parentActivityName=".Activities.ProfessionalsListActivity"/>
         <activity
             android:name=".Activities.ProfessionalsListActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Activities.MainActivity"/>
         <activity
             android:name=".Activities.UpdateUser"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Activities.MainActivity"/>
         <activity
             android:name=".Activities.MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Activities.StartActivity"/>
         <activity
             android:name=".Activities.RegisterActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize"
+            android:parentActivityName=".Activities.StartActivity"/>
         <activity
             android:name=".Activities.StartActivity"
             android:exported="true"

@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.myapplication.LocationUtil;
 import com.example.myapplication.Models.LoginUser;
 import com.example.myapplication.Models.Order;
 import com.example.myapplication.Models.User;
@@ -59,11 +60,13 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
     private ImageView imageDetails;
     private RatingBar rBar;
     private Button btn;
+    private DatePickerDialog datePickerDialog;
     Button timeButton;
     int hour;
     int minute;
-    private DatePickerDialog datePickerDialog;
     Button dateButton;
+    EditText phoneOrder;
+    EditText addressOrder;
 
     DatabaseReference databaseReference;
     StorageReference storageReference;
@@ -72,6 +75,8 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_professional_details);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         orderBtn = findViewById(R.id.orderBtn);
         tvEmail = findViewById(R.id.tvEmailDetails);
@@ -175,14 +180,32 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
         initDatePicker();
         dateButton=dialog.findViewById(R.id.dateButton);
         dateButton.setText(getTodayDate());
+        timeButton.setText("00:00");
+        phoneOrder = dialog.findViewById(R.id.phoneOrder);
+        addressOrder = dialog.findViewById(R.id.addressOrder);
+
+        String place = LoginUser.getLoginUserAddress();
+        if(place.contains(", Israel")){
+            place = place.replace(", Israel", "");
+        }
+
+        addressOrder.setText(place);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String date = dateButton.getText().toString();
                 String time = timeButton.getText().toString();
-                addOrder(emailFromTv, time, date);
-                dialog.dismiss();
+                String phone = phoneOrder.getText().toString();
+                String address = addressOrder.getText().toString();
+
+                if(phone.equals("") || address.equals("")){
+                    Toast.makeText(ProfessionalDetailsActivity.this, "Missing Details", Toast.LENGTH_SHORT).show();
+                } else {
+                    addOrder(emailFromTv, time, date, phone, address);
+                    dialog.dismiss();
+                    Toast.makeText(ProfessionalDetailsActivity.this, "Order saved!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         dialog.show();
@@ -198,8 +221,8 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
     }
 
 
-    private void addOrder(String emailPro, String time, String date){
-        Order order= new Order(emailPro, LoginUser.getLoginEmail(), time, date);
+    private void addOrder(String emailPro, String time, String date, String phone, String address){
+        Order order= new Order(emailPro, LoginUser.getLoginEmail(), time, date, phone, address);
         db= FirebaseDatabase.getInstance();
         String key = db.getReference("Orders").push().getKey();
         reference= db.getReference("Orders");

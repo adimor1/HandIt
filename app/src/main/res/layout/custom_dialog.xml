@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="350dp"
-    android:layout_height="280dp"
+    android:layout_height="410dp"
     android:layout_margin="28dp"
     android:padding="10dp"
     >
@@ -37,14 +37,43 @@
         android:text="Select Date"
         android:textColor="@color/black"
         android:textSize="20sp"
-        style="?android:spinnerStyle" />
+        style="?android:spinnerStyle"
+        android:paddingBottom="10dp"/>
+
+    <EditText
+        android:id="@+id/phoneOrder"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:background="@drawable/custom_input"
+        android:drawableStart="@drawable/custom_phone_icon"
+        android:drawablePadding="12dp"
+        android:ems="10"
+        android:text=""
+        android:hint="Phone"
+        android:inputType="phone"
+        android:paddingStart="10dp"
+        android:paddingEnd="12dp" />
+
+    <EditText
+        android:id="@+id/addressOrder"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="10dp"
+        android:text=""
+        android:background="@drawable/custom_input"
+        android:drawableStart="@drawable/custom_location_icon"
+        android:drawablePadding="12dp"
+        android:ems="10"
+        android:hint="Address"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp" />
 
     <Button
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:id="@+id/submit_button"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="30dp"
         android:text="Sumbit"/>
 

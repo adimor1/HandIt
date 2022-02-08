@@ -55,6 +55,8 @@ public class ProfessionalsListActivity extends AppCompatActivity implements Prof
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_professionals_list);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         locationutil_handle();
     }
 
@@ -81,6 +83,7 @@ public class ProfessionalsListActivity extends AppCompatActivity implements Prof
                         String location_address = "No location found";
                         if (locationUtil.getAddress() != null) {
                             location_address = locationUtil.getAddress();
+                            LoginUser.setLoginUserAddress(location_address);
                             Toast.makeText(ProfessionalsListActivity.this, location_address, Toast.LENGTH_SHORT).show();
                         }
                         else
