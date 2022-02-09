@@ -20,13 +20,11 @@ public class OrderClientAdapter extends RecyclerView.Adapter<OrderClientAdapter.
     ArrayList<Order> list;
     ArrayList<User> listProf;
     Order order;
-    User user;
     private OrderClientListener morderClientListener;
 
-    public OrderClientAdapter(Context context, ArrayList<Order> list, ArrayList<User> listProf, OrderClientListener orderClientListener) {
+    public OrderClientAdapter(Context context, ArrayList<Order> list, OrderClientListener orderClientListener) {
         this.context = context;
         this.list = list;
-        this.listProf = listProf;
         this.morderClientListener = orderClientListener;
     }
 
@@ -41,7 +39,6 @@ public class OrderClientAdapter extends RecyclerView.Adapter<OrderClientAdapter.
     public void onBindViewHolder(@NonNull OrderClientAdapter.MyViewHolder holder, int position) {
 
         order = list.get(position);
-        user = listProf.get(position);
 
         holder.time.setText(order.getDate()+" " +order.getTime());
 
@@ -59,9 +56,6 @@ public class OrderClientAdapter extends RecyclerView.Adapter<OrderClientAdapter.
             holder.status.setText("Canceled");
             holder.image.setImageResource(R.drawable.ic_cancle);
         }
-
-        holder.name.setText(user.getFirstName()+" "+ user.getLastName()+" - "+ user.getProfession());
-        holder.phone.setText(user.getPhone());
     }
 
     @Override
@@ -73,8 +67,6 @@ public class OrderClientAdapter extends RecyclerView.Adapter<OrderClientAdapter.
         TextView time;
         TextView status;
         ImageView image;
-        TextView name;
-        TextView phone;
 
         OrderClientListener orderClientListener;
 

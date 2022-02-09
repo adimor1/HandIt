@@ -29,7 +29,6 @@ public class ClientOrderActivity extends AppCompatActivity implements OrderClien
     DatabaseReference database;
     OrderClientAdapter myAdapter;
     ArrayList<Order> list;
-    ArrayList<User> listProf;
     DatabaseReference databaseReference;
 
     @Override
@@ -38,6 +37,7 @@ public class ClientOrderActivity extends AppCompatActivity implements OrderClien
         setContentView(R.layout.activity_client_order);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         adapterHandler();
+
     }
 
     private void adapterHandler(){
@@ -46,11 +46,8 @@ public class ClientOrderActivity extends AppCompatActivity implements OrderClien
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        listProf = new ArrayList<>();
         list = new ArrayList<>();
 
-        myAdapter = new OrderClientAdapter(this, list, listProf, this);
-        recyclerView.setAdapter(myAdapter);
         database.addValueEventListener(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @SuppressLint("NotifyDataSetChanged")
@@ -61,31 +58,14 @@ public class ClientOrderActivity extends AppCompatActivity implements OrderClien
                     Order order = dataSnapshot.getValue(Order.class);
                     if((order.getClientEmail()).equals(LoginUser.getLoginEmail())){
                         list.add(order);
-                        addProf(order.getProEmail());
                     }
                 }
 
+                myAdapter = new OrderClientAdapter(ClientOrderActivity.this, list, ClientOrderActivity.this);
+                recyclerView.setAdapter(myAdapter);
                 myAdapter.notifyDataSetChanged();
             }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-    }
-
-    public void addProf(String email){
-
-        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
-        databaseReference.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot childSnapshot: snapshot.getChildren()){
-                    User user = childSnapshot.getValue(User.class);
-                    listProf.add(user);
-                }
-            }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
