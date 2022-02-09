@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvSearch;
     private TextView tvUpdate;
     private TextView tvOrderClient;
+    private TextView title;
 
     DatabaseReference databaseReference;
 
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         tvOrderClient = findViewById(R.id.textClientOrder);
         tvSearch = findViewById(R.id.textSearch);
         tvUpdate = findViewById(R.id.textUpdate);
+        title =findViewById(R.id.title);
 
 
             databaseReference = FirebaseDatabase.getInstance().getReference("Users");
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
                             tvOrderClient.setVisibility(View.VISIBLE);
                             tvSearch.setVisibility(View.VISIBLE);
                             logout.setVisibility(View.VISIBLE);
+                            title.setVisibility(View.VISIBLE);
                         } else {
                             userProfile.setVisibility(View.VISIBLE);
                             professionals.setVisibility(View.VISIBLE);
@@ -94,9 +97,9 @@ public class MainActivity extends AppCompatActivity {
                             tvSearch.setVisibility(View.VISIBLE);
                             tvUpdate.setVisibility(View.VISIBLE);
                             logout.setVisibility(View.VISIBLE);
+                            title.setVisibility(View.VISIBLE);
 
                             if(phone.equals("") && location.equals("") && seniority.equals("") && profession.equals("") && description.equals("")){
-                                userProfile.setBackgroundColor(Color.RED);
                                 Handler h = new Handler();
                                 h.postDelayed(new Runnable() {
                                     @Override

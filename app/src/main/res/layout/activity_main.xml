@@ -10,16 +10,33 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="70dp"
+            android:orientation="vertical"
+            android:layout_marginBottom="30dp">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:visibility="invisible"
+                android:text="Your Professionals In One App \n CHOOSE - ORDER - RATE"
+                android:textColor="@color/black"
+                android:textSize="26dp"
+                android:textStyle="italic" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="1dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -32,21 +49,21 @@
                     android:id="@+id/professionals"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
+                    android:visibility="invisible"
                     android:layout_margin="10dp"
-                    android:background="@color/purple_700"
-                    android:src="@drawable/ic_search"
-                    android:visibility="invisible"/>
+                    android:background="@drawable/circle"
+                    android:src="@drawable/ic_search" />
 
                 <TextView
                     android:id="@+id/textSearch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Search professional"
-                    android:textStyle="italic"
+                    android:text="Search \n professional"
                     android:textColor="@color/black"
-                    android:textSize="30dp"
-                    android:visibility="invisible"/>
+                    android:visibility="invisible"
+                    android:textSize="20dp"
+                    android:textStyle="italic" />
             </LinearLayout>
 
             <LinearLayout
@@ -60,31 +77,31 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
-                    android:background="@color/purple_500"
+                    android:visibility="invisible"
+                    android:background="@drawable/circle"
                     android:src="@drawable/ic_list"
-                    android:visibility="invisible"/>
+
+                    />
 
                 <TextView
                     android:id="@+id/textClientOrder"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Client      Order"
-                    android:textStyle="italic"
-                    android:textColor="@color/black"
+                    android:text="Client \n Order"
                     android:visibility="invisible"
-                    android:textSize="30dp" />
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="italic" />
             </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="200dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="1dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -98,21 +115,20 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
-                    android:background="@color/purple_500"
-                    android:src="@drawable/ic_person"
-                    android:visibility="invisible"/>
+                    android:background="@drawable/circle"
+                    android:visibility="invisible"
+                    android:src="@drawable/ic_person" />
 
                 <TextView
                     android:id="@+id/textUpdate"
-                    android:layout_width="158dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:gravity="center"
                     android:text="Update"
-                    android:textStyle="italic"
-                    android:visibility="invisible"
                     android:textColor="@color/black"
-                    android:textSize="30dp" />
+                    android:visibility="invisible"
+                    android:textSize="20dp"
+                    android:textStyle="italic" />
             </LinearLayout>
 
             <LinearLayout
@@ -127,34 +143,39 @@
                     android:layout_height="150dp"
                     android:layout_margin="10dp"
                     android:visibility="invisible"
-                    android:background="@color/purple_700"
+                    android:background="@drawable/circle"
                     android:src="@drawable/ic_myorders" />
 
                 <TextView
                     android:id="@+id/textOrders"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="invisible"
                     android:gravity="center"
                     android:text="Orders"
-                    android:visibility="invisible"
                     android:textColor="@color/black"
-                    android:textStyle="italic"
-                    android:textSize="30dp" />
+                    android:textSize="20dp"
+                    android:textStyle="italic" />
             </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/logout"
-        android:layout_width="119dp"
-        android:layout_height="68dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="590dp"
-        android:layout_marginEnd="10dp"
-        android:visibility="invisible"
-        android:text="Log out" />
+            <Button
+                android:id="@+id/logout"
+                android:visibility="invisible"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:text="Log out" />
+        </LinearLayout>
+
+    </LinearLayout>
 
 
 </RelativeLayout>
