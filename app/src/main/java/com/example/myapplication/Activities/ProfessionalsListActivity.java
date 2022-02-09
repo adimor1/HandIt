@@ -27,7 +27,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -47,7 +46,6 @@ public class ProfessionalsListActivity extends AppCompatActivity implements Prof
     private boolean isLocationPermissionGranted = false;
     private boolean noLocationFound;
     private boolean is_location_process_end = false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +97,6 @@ public class ProfessionalsListActivity extends AppCompatActivity implements Prof
                     is_location_process_end = true;
                     adapterHandler(true);
                 }
-
             }
         };
         locationUtil = new LocationUtil(this, location_listener);

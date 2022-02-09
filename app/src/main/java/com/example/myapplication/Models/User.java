@@ -106,8 +106,6 @@ public class User implements Parcelable{
         this.countRating = countRating;
     }
 
-
-
     public User(){
     }
 
@@ -215,6 +213,5 @@ public class User implements Parcelable{
         dest.writeString(location);
         dest.writeInt(countRating);
         dest.writeDouble(sumRating);
-
     }
 }

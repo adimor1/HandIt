@@ -39,7 +39,6 @@ public class ProfOrdersActivity extends AppCompatActivity implements OrderProfAd
     DatabaseReference database;
     OrderProfAdapter myAdapter;
     ArrayList<Order> list;
-    ArrayList<Double> disList;
     DatabaseReference databaseReference;
 
     @Override
@@ -89,6 +88,7 @@ public class ProfOrdersActivity extends AppCompatActivity implements OrderProfAd
 
     }
 
+    //swipe
     ItemTouchHelper.SimpleCallback itemTouchHelperCallbeck = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
         @Override
         public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -138,6 +138,7 @@ public class ProfOrdersActivity extends AppCompatActivity implements OrderProfAd
             super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
         }
     };
+    //end swipe
 
     private void updateStatus(int status, String id) {
         HashMap Order = new HashMap();

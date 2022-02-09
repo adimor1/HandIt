@@ -128,7 +128,6 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
                 tvRating.setText(countRating + " Rated [" + calRating +" Grade]");
             }
 
-
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -219,7 +218,6 @@ public class ProfessionalDetailsActivity extends AppCompatActivity {
         int day = cal.get(Calendar.DAY_OF_MONTH);
         return makeDateString(day, month, year);
     }
-
 
     private void addOrder(String emailPro, String time, String date, String phone, String address){
         Order order= new Order(emailPro, LoginUser.getLoginEmail(), time, date, phone, address);

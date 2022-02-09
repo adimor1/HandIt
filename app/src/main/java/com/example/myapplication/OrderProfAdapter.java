@@ -96,5 +96,4 @@ public class OrderProfAdapter extends RecyclerView.Adapter<OrderProfAdapter.MyVi
     public interface OrderProfListener{
         void orderProfClick(int position);
     }
-
 }

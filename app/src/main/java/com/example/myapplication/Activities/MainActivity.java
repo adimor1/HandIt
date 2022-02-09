@@ -1,11 +1,9 @@
 package com.example.myapplication.Activities;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -20,7 +18,6 @@ import android.widget.Toast;
 import com.example.myapplication.Models.LoginUser;
 import com.example.myapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
     private Button logout;
     private Button add;
-    private Button userList;
     private ImageButton userProfile;
     private ImageButton professionals;
     private ImageButton orders;
@@ -146,6 +142,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ProfOrdersActivity.class));
+            }
+        });
+        orderClient.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ClientOrderActivity.class));
             }
         });
     }

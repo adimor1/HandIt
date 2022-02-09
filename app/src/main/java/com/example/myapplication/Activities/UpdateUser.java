@@ -22,7 +22,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.myapplication.Models.LoginUser;
-import com.example.myapplication.Models.User;
 import com.example.myapplication.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
