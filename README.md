@@ -8,3 +8,7 @@
 6.  View your order history and future orders as a professional/ customer
 
 ![alt text](https://github.com/adimor1/HandIt/blob/master/imag1.jpg)
+![alt text](https://github.com/adimor1/HandIt/blob/master/imag2.jpg)
+![alt text](https://github.com/adimor1/HandIt/blob/master/imag3.jpg)
+![alt text](https://github.com/adimor1/HandIt/blob/master/imag4.jpg)
+![alt text](https://github.com/adimor1/HandIt/blob/master/imag5.jpg)
