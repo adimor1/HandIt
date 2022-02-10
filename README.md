@@ -1,6 +1,5 @@
 # Handit
 
-## Main Purpose1
 1. Register for the app as a professional or as a customer
 2. Find a professional by distance (with GPS)
 3. Order professional according to the date and time
