@@ -7,8 +7,9 @@
 5.  Rate the professional you have ordered
 6.  View your order history and future orders as a professional/ customer
 
-![alt text](https://github.com/adimor1/HandIt/blob/master/imag1.jpg)
-![alt text](https://github.com/adimor1/HandIt/blob/master/image2.jpg)
-![alt text](https://github.com/adimor1/HandIt/blob/master/image3.jpg)
 ![alt text](https://github.com/adimor1/HandIt/blob/master/image4.jpg)
+![alt text](https://github.com/adimor1/HandIt/blob/master/image3.jpg)
+![alt text](https://github.com/adimor1/HandIt/blob/master/image2.jpg)
 ![alt text](https://github.com/adimor1/HandIt/blob/master/image5.jpg)
+![alt text](https://github.com/adimor1/HandIt/blob/master/imag1.jpg)
+
