@@ -10,6 +10,7 @@
 ![alt text](https://github.com/adimor1/HandIt/blob/master/image4.jpg)
 ![alt text](https://github.com/adimor1/HandIt/blob/master/image3.jpg)
 ![alt text](https://github.com/adimor1/HandIt/blob/master/image2.jpg)
+![alt text](https://github.com/adimor1/HandIt/blob/master/image6.jpg)
 ![alt text](https://github.com/adimor1/HandIt/blob/master/image5.jpg)
 ![alt text](https://github.com/adimor1/HandIt/blob/master/imag1.jpg)
 
