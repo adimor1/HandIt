@@ -1,4 +1,4 @@
-# Handit
+# Handit - Androaid application
 
 1. Register for the app as a professional or as a customer
 2. Find a professional by distance (with GPS)
